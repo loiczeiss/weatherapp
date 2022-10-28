@@ -107,7 +107,7 @@ var date5 = new Date(Date.now() + 1000 * 60 * 60 * 4); // Add 5 hours.
         {/* city name display */}
 
         <div className="h-1/4	 flex flex-row justify-center pl-4 ">
-    <input type="text" id="input" placeholder="press Ctrl+K" className="h-4 self-center border-rounded"/>
+    {/* <input type="text" id="input" placeholder="press Ctrl+K" className="h-4 self-center border-rounded"/> */}
         </div>
         {/* city name display */}
         {/* Temperature and min max display  */}
