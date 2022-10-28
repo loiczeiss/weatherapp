@@ -1,0 +1,189 @@
+[
+    {
+        "place_id": "274513692",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "relation",
+        "osm_id": "58274",
+        "boundingbox": [
+            "50.7964079",
+            "50.9139045",
+            "4.3140021",
+            "4.4370711"
+        ],
+        "lat": "50.8465573",
+        "lon": "4.351697",
+        "display_name": "Bruxelles, Bruxelles-Capitale, Belgique",
+        "class": "boundary",
+        "type": "administrative",
+        "importance": 0.6775296450907791,
+        "icon": "https://locationiq.org/static/images/mapicons/poi_boundary_administrative.p.20.png"
+    },
+    {
+        "place_id": "273743389",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "relation",
+        "osm_id": "126065",
+        "boundingbox": [
+            "38.941991",
+            "38.953718",
+            "-90.604543",
+            "-90.579482"
+        ],
+        "lat": "38.9494939",
+        "lon": "-90.5887314",
+        "display_name": "Brussels, Calhoun County, Illinois, 62013, États-Unis d'Amérique",
+        "class": "boundary",
+        "type": "administrative",
+        "importance": 0.5202666512817051,
+        "icon": "https://locationiq.org/static/images/mapicons/poi_boundary_administrative.p.20.png"
+    },
+    {
+        "place_id": "325887481",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "way",
+        "osm_id": "991425177",
+        "boundingbox": [
+            "50.846023",
+            "50.8474363",
+            "4.3512164",
+            "4.3537194"
+        ],
+        "lat": "50.846729249999996",
+        "lon": "4.352397916800592",
+        "display_name": "Grand-Place, Quartier du Centre, Pentagone, Bruxelles, Bruxelles-Capitale, 1000, Belgique",
+        "class": "boundary",
+        "type": "protected_area",
+        "importance": 0.4542449983831752
+    },
+    {
+        "place_id": "274736713",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "relation",
+        "osm_id": "3299877",
+        "boundingbox": [
+            "50.8430824",
+            "50.8442963",
+            "4.3589527",
+            "4.3604998"
+        ],
+        "lat": "50.84371815",
+        "lon": "4.359790395373073",
+        "display_name": "Bozar, 23, Rue Ravenstein, Quartier Royal, Pentagone, Bruxelles, Bruxelles-Capitale, 1000, Belgique",
+        "class": "amenity",
+        "type": "arts_centre",
+        "importance": 0.41499571453316136,
+        "icon": "https://locationiq.org/static/images/mapicons/tourist_art_gallery2.p.20.png"
+    },
+    {
+        "place_id": "153956",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "node",
+        "osm_id": "153601842",
+        "boundingbox": [
+            "44.7161071",
+            "44.7561071",
+            "-87.6409298",
+            "-87.6009298"
+        ],
+        "lat": "44.7361071",
+        "lon": "-87.6209298",
+        "display_name": "Brussels, Town of Brussels, Door County, Wisconsin, 54204, États-Unis d'Amérique",
+        "class": "place",
+        "type": "village",
+        "importance": 0.375,
+        "icon": "https://locationiq.org/static/images/mapicons/poi_place_village.p.20.png"
+    },
+    {
+        "place_id": "274807409",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "relation",
+        "osm_id": "2404021",
+        "boundingbox": [
+            "50.7964079",
+            "50.890497",
+            "4.335464",
+            "4.4020115"
+        ],
+        "lat": "50.8436353",
+        "lon": "4.367353745722238",
+        "display_name": "Bruxelles, Bruxelles-Capitale, Belgique",
+        "class": "boundary",
+        "type": "administrative",
+        "importance": 0.35,
+        "icon": "https://locationiq.org/static/images/mapicons/poi_boundary_administrative.p.20.png"
+    },
+    {
+        "place_id": "316664540",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "node",
+        "osm_id": "7127433214",
+        "boundingbox": [
+            "43.7233558",
+            "43.7633558",
+            "-81.2706263",
+            "-81.2306263"
+        ],
+        "lat": "43.7433558",
+        "lon": "-81.2506263",
+        "display_name": "Brussels, Huron East, Huron County, Southwestern Ontario, Ontario, N0G 1H0, Canada",
+        "class": "place",
+        "type": "village",
+        "importance": 0.327354491752902,
+        "icon": "https://locationiq.org/static/images/mapicons/poi_place_village.p.20.png"
+    },
+    {
+        "place_id": "3810621",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "node",
+        "osm_id": "505164924",
+        "boundingbox": [
+            "41.7039418",
+            "41.7040418",
+            "44.7933127",
+            "44.7934127"
+        ],
+        "lat": "41.7039918",
+        "lon": "44.7933627",
+        "display_name": "Radisson Blu Iveria Hotel, 1, პირველი რესპუბლიკის მოედანი, ვერე, ძველი თბილისის რაიონი, Tbilissi, 0108, Géorgie",
+        "class": "tourism",
+        "type": "hotel",
+        "importance": 0.2096239553712498,
+        "icon": "https://locationiq.org/static/images/mapicons/accommodation_hotel2.p.20.png"
+    },
+    {
+        "place_id": "272660232",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "way",
+        "osm_id": "938374642",
+        "boundingbox": [
+            "14.6048549",
+            "14.6066294",
+            "121.0972819",
+            "121.0973352"
+        ],
+        "lat": "14.6057881",
+        "lon": "121.0973144",
+        "display_name": "Brussels, Cruz-Robles, Manggahan, Pasig, Eastern Manila District, Grand Manille, 1612, Philippines",
+        "class": "highway",
+        "type": "residential",
+        "importance": 0.19999999999999998
+    },
+    {
+        "place_id": "100996547",
+        "licence": "https://locationiq.com/attribution",
+        "osm_type": "way",
+        "osm_id": "23379872",
+        "boundingbox": [
+            "14.451491",
+            "14.4529475",
+            "121.0006466",
+            "121.0014565"
+        ],
+        "lat": "14.4517971",
+        "lon": "121.0006535",
+        "display_name": "Brussels, BF International Village, BF International/CAA, 1st District, Las Piñas, Southern Manila District, Grand Manille, 1718, Philippines",
+        "class": "highway",
+        "type": "residential",
+        "importance": 0.19999999999999998
+    }
+]
