@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "react-select-async-paginate": "^0.7.0",
     "stream-browserify": "^3.0.0",
     "styled-components": "^5.3.6",
     "url": "^0.11.0",
