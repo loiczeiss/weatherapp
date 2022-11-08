@@ -15,19 +15,7 @@ function App({onSearchChange}) {
   //   // fetchLatLong()
   // }, []);
 
-//   const fetchLatLong =  () => {
-    
-// console.log(city)
-//     console.log('form submitted ✅');
-//     console.log(city)
-//     const response =  axios
-//       .get(
-//         `https://us1.locationiq.com/v1/search?key=pk.b0c72dd0f13fc709afc8117de2444250&q=${city}&format=json`
-//       )
-//       .then((response) => {
-//         console.log(response.data);
-//       });
-//   };
+//   
   
 
 //   const fetchWeather = async () => {
