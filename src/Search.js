@@ -19,20 +19,21 @@ const [search, setSearch] = useState(null)
 
 const loadOptions = (inputValue) =>{
     console.log("am i here?")
- axios.get(`https://us1.locationiq.com/v1/search?key=pk.b0c72dd0f13fc709afc8117de2444250&q=${inputValue}&format=json`)
-.then(res => console.log(res.data[0]) )
-    .then( res => {
+ return axios.get(`https://us1.locationiq.com/v1/search?key=pk.b0c72dd0f13fc709afc8117de2444250&q=${inputValue}&format=json`)
+.then( res => res)
+.then(res => {
         return {
             options: res.data.map((city) => {
                 return {
-                    value: `${city.lat} ${city.lon}`,
-                    label: `${city.display_name}`
+                        value: `${city.lat} ${city.lon}`,
+                        label: `${city.display_name}`
                 }
+     
             } )
         }
     })
 
-
+.catch((err) => console.error(err))
 }
 
 const handleOnChange = (searchData) => {
