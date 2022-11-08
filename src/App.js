@@ -3,12 +3,14 @@ import axios from "axios";
 
 import Weather from "./Weather";
 import Search from "./Search";
+import WeatherS from "./Weather2";
+
 
 function App({onSearchChange}) {
   // const [lat, setLat] = useState(50.8476);
   // const [long, setLong] = useState(4.3572);
   const [weatherIntel, setWeatherIntel] = useState({});
-const [weatherFetcho, setWeatherfetcho] = useState(null)
+const [weatherFetcho, setWeatherfetcho] = useState({})
 
 //   
   
@@ -45,9 +47,16 @@ Promise.all([fetchWeather ]).then(async (response) =>
 
 
   return (
-    <div className="App h-full">
-<Search onSearchChange={HandleOnSearchChange}/>
+    <div className="App h-screen bg-black">
+    
+
+
       <Weather weather={weatherFetcho} />
+      <div className=" h-1/8  flex place-content-center	mt-8 ml-11 justify-center">
+      <div className="place-items-center		">
+      <Search onSearchChange={HandleOnSearchChange}/>
+      </div></div>
+      <WeatherS weather={weatherFetcho}/>
     </div>
   );
 }

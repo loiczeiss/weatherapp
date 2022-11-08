@@ -44,8 +44,9 @@ const handleOnChange = (searchData) => {
 }
 ;
 return (
-    <AsyncPaginate
-    placeholder="search for adress"
+    <AsyncPaginate 
+    className="text-basis outline-none w-80"
+    placeholder="Type Your city"
     debounceTimeout={600}
     value={search}
     onChange={handleOnChange}
