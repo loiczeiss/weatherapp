@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import axios from "axios";
+import './App.css'
 
 import Weather from "./Weather";
 import Search from "./Search";
@@ -35,12 +36,14 @@ Promise.all([fetchWeather ]).then(async (response) =>
 
 
   return (
-    <div className="App h-screen bg-black">
+    <div
+    style={{background: "linear-gradient(to top, #fc4a1a, #f7b733)"}}
+     className="App h-screen	flex flex-col ">
     
 
-
-      <Weather weather={weatherFetcho} />
-      <div className=" h-1/8  flex place-content-center	mt-8  justify-center">
+<div className="div h-1/8 flex flex-col	 ">
+      <Weather weather={weatherFetcho} /></div>
+      <div className=" h-1/8  flex place-content-center	mt-4  justify-center">
       <div className="place-items-center		">
       <Search onSearchChange={HandleOnSearchChange}/>
       </div></div>

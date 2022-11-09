@@ -46,12 +46,12 @@ const WeatherS = ({ weather }) => {
   let day4 = weekdays[dateE.getDay()];
 
   return (
-    <>
+    <div className="div flex flex-col h-full	">
       <div className="h-1/8	 flex flex-row justify-center pl-4 ">
         {/* <input type="text" id="input" placeholder="press Ctrl+K" className="h-4 self-center border-rounded"/> */}
       </div>
 
-      <div className="h-1/6 pt-8 flex flex-row">
+      <div className="h-1/8  flex flex-row">
         <div className=" w-1/3 flex flex-col justify-start pl-4">
           <p className="text-white text-xl">
             {weather.current_weather && weather.current_weather.temperature}°
@@ -132,23 +132,23 @@ const WeatherS = ({ weather }) => {
       </div>
       {/* Hourly temps */}
       {/* Daily Intel  */}
-      <div className="   ">
-        <div className="flex flex-row justify-evenly">
-          <div className=" flex flex-col space-y-12 mt-6 text-basis align-center text-white ">
+    
+        <div className=" h-full flex flex-row justify-around	content-evenly	 ">
+          <div className=" flex flex-col  place-content-evenly text-basis align-center text-white ">
             <p>{day0}</p>
             <p>{day1}</p>
             <p>{day2}</p>
             <p>{day3}</p>
             <p>{day4}</p>
           </div>
-          <div className=" flex flex-col space-y-12 mt-6 text-basis align-center text-white">
+          <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
             <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p>
           </div>
-          <div className=" flex flex-col space-y-12 mt-6">
+          <div className=" flex flex-col place-content-evenly">
             <div className="flex flex-row justify-center	space-x-3">
               <div className="flex flex-col">
                 {" "}
@@ -221,9 +221,9 @@ const WeatherS = ({ weather }) => {
             </div>
           </div>
         </div>
-      </div>
+      
       {/* Daily Intel  */}
-    </>
+      </div>
   );
 };
 

@@ -1,3 +1,7 @@
 #imgea{
     filter: invert(100%);
 }
+
+.css-at12u2-loadingIndicator{
+    display: none;
+}
