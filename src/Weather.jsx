@@ -2,6 +2,7 @@ import "./index.css";
 import "./Sidebar.css";
 import "./App.css";
 
+
 const Weather = ({ weather }) => {
   // Day definition for header
   //[FIXME:] refactor me into a fn
@@ -13,11 +14,11 @@ const Weather = ({ weather }) => {
     <div
       // style={{background : weathercode === 1 ? "linear-gradient(to top, #fc4a1a, #f7b733)" : null}}
       id="bg"
-      className="h-full	 text-center overflow-hidden 	"
+      className="h-full	flex flex-row place-content-center	items-center	 overflow-hidden 	"
     >
       <div className=" flex flex-col	">
         {/* header */}
-        <div id="cont" className="h-1/2 flex flex-row">
+        <div id="cont" className="h-1/2 w-screen flex flex-row place-content- items-center">
           <div className=" flex basis-1/4 justify-center	 mt-4 font-display text-xl	text-white ">
             <svg
               className=" h-8  fill-white"
@@ -31,11 +32,11 @@ const Weather = ({ weather }) => {
             </svg>
           </div>
 
-          <p className="self-center font-display text-base	text-white basis-2/4 mt-6">
+          <p className="self-center text-center font-display text-base	text-white basis-2/4 mt-6">
             {timeDisplay}
           </p>
 
-          <div className="basis-1/4 self-center font-display text-base	text-white mt-6">
+          <div className="basis-1/4 self-center text-center font-display text-base	text-white mt-6">
             <p>°C</p>
           </div>
         </div>

@@ -1,11 +1,13 @@
-import { useState } from "react";
+
 import "./index.css";
 import "./Sidebar.css";
 import "./App.css";
 
+
 const WeatherS = ({ weather }) => {
-  console.log(weather);
-  const [weathercode, setWeathercode] = useState(1);
+
+
+
 
   // Hourly time definition
 
@@ -44,6 +46,12 @@ const WeatherS = ({ weather }) => {
   let day2 = weekdays[dateC.getDay()];
   let day3 = weekdays[dateD.getDay()];
   let day4 = weekdays[dateE.getDay()];
+
+
+
+
+
+  // Cond rendering svg on base of weathercode floats data 
 
   return (
     <div className="div flex flex-col h-full	">
@@ -142,11 +150,13 @@ const WeatherS = ({ weather }) => {
             <p>{day4}</p>
           </div>
           <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
+            {/* <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p>
-            <p>SVG</p>
-            <p>SVG</p>
+            <p>SVG</p> */}
+
+       <img  alt="img here" />
           </div>
           <div className=" flex flex-col place-content-evenly">
             <div className="flex flex-row justify-center	space-x-3">
