@@ -2,7 +2,7 @@
 import "./index.css";
 import "./Sidebar.css";
 import "./App.css";
-
+import sun from './svg/sun.svg'
 
 const WeatherS = ({ weather }) => {
 
@@ -25,13 +25,13 @@ const WeatherS = ({ weather }) => {
   //  Daily time function to display intel
 
   const weekdays = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
   ];
   // weekdays.map((weekday, i) => console.log(0))
   let dateday = commencons.getDay();
@@ -52,7 +52,14 @@ const WeatherS = ({ weather }) => {
 
 
   // Cond rendering svg on base of weathercode floats data 
-
+function iconDisplay(){
+let weathercode = 1
+if( weathercode === 1 )
+{
+  return sun
+}
+}
+console.log(iconDisplay)
   return (
     <div className="div flex flex-col h-full	">
       <div className="h-1/8	 flex flex-row justify-center pl-4 ">
@@ -141,7 +148,7 @@ const WeatherS = ({ weather }) => {
       {/* Hourly temps */}
       {/* Daily Intel  */}
     
-        <div className=" h-full flex flex-row justify-around	content-evenly	 ">
+        <div className=" h-full flex flex-row justify-evenly		 ">
           <div className=" flex flex-col  place-content-evenly text-basis align-center text-white ">
             <p>{day0}</p>
             <p>{day1}</p>
@@ -155,8 +162,13 @@ const WeatherS = ({ weather }) => {
             <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p> */}
+            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
+            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
+            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
+            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
 
-       <img  alt="img here" />
+
+       <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
           </div>
           <div className=" flex flex-col place-content-evenly">
             <div className="flex flex-row justify-center	space-x-3">
