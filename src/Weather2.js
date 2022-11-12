@@ -2,7 +2,7 @@
 import "./index.css";
 import "./Sidebar.css";
 import "./App.css";
-import sun from './svg/sun.svg'
+
 
 const WeatherS = ({ weather }) => {
 
@@ -52,14 +52,14 @@ const WeatherS = ({ weather }) => {
 
 
   // Cond rendering svg on base of weathercode floats data 
-function iconDisplay(){
-let weathercode = 1
-if( weathercode === 1 )
-{
-  return sun
-}
-}
-console.log(iconDisplay)
+// function iconDisplay(){
+// let weathercode = 1
+// if( weathercode === 1 )
+// {
+//   return sun
+// }
+// }
+// console.log(iconDisplay)
   return (
     <div className="div flex flex-col h-full	">
       <div className="h-1/8	 flex flex-row justify-center pl-4 ">
@@ -162,13 +162,10 @@ console.log(iconDisplay)
             <p>SVG</p>
             <p>SVG</p>
             <p>SVG</p> */}
-            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
-            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
-            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
-            <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
+        
 
 
-       <img src={iconDisplay()} className='fill-white pr-9 h-8' alt="img here" />
+       <img  className='fill-white pr-9 h-8' alt="img here" src={0} />
           </div>
           <div className=" flex flex-col place-content-evenly">
             <div className="flex flex-row justify-center	space-x-3">
