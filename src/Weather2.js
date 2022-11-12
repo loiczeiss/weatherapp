@@ -5,7 +5,7 @@ import "./App.css";
 
 
 const WeatherS = ({ weather }) => {
-
+console.log( weather)
 
 
 
@@ -157,15 +157,14 @@ const WeatherS = ({ weather }) => {
             <p>{day4}</p>
           </div>
           <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
-            {/* <p>SVG</p>
-            <p>SVG</p>
-            <p>SVG</p>
-            <p>SVG</p>
-            <p>SVG</p> */}
-        
+          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[0]}.svg`} />
+          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[1]}.svg`} />
+          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[2]}.svg`} />
+          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[3]}.svg`} />
+          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[4]}.svg`} />
 
 
-       <img  className='fill-white pr-9 h-8' alt="img here" src={0} />
+
           </div>
           <div className=" flex flex-col place-content-evenly">
             <div className="flex flex-row justify-center	space-x-3">
