@@ -3,7 +3,8 @@ import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 
 const Search = ({ onSearchChange }) => {
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("bruxelles");
+  console.log(search)
 
   const loadOptions = (inputValue) => {
     console.log("am i here?");

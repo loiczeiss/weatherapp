@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import axios from "axios";
 import './App.css'
 
@@ -10,12 +10,19 @@ import WeatherS from "./Weather2";
 function App({onSearchChange}) {
 
 
-const [weatherFetcho, setWeatherfetcho] = useState({})
 
+const [weatherBx, setWeatherBx] = useState({})
 
+//   useEffect(() => {
+//     axios.get('https://api.open-meteo.com/v1/forecast?latitude=50.8333&longitude=4.35&hourly=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&current_weather=true&timezone=auto')
+// .then((res) => res)
+// .then((res) => {
+//   setWeatherBx(res.data)
+//   console.log(weatherBx)
+//   })}, [weatherBx])
   
 
-
+  const [weatherFetcho, setWeatherfetcho] = useState({weatherBx})
 
 const HandleOnSearchChange = (searchData) => {
   const [lat, long] = searchData.value.split (" ")
