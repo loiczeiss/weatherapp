@@ -12,15 +12,17 @@ console.log( weather)
   // Hourly time definition
 
   let commencons = new Date();
-  // // let dateTemps = commencons.getHours();
+  let dateTemps = commencons.getHours();
+  console.log(dateTemps)
   var date2 = new Date(Date.now() + 1000 * 60 * 60 * 1); // Add 2 hours.
+
   let dateTemps2 = date2.getHours();
   var date3 = new Date(Date.now() + 1000 * 60 * 60 * 2); // Add 3 hours.
-  // let dateTemps3 = date3.getHours();
+  let dateTemps3 = date3.getHours();
   var date4 = new Date(Date.now() + 1000 * 60 * 60 * 3); // Add 4 hours.
-  // let dateTemps4 = date4.getHours();
+  let dateTemps4 = date4.getHours();
   var date5 = new Date(Date.now() + 1000 * 60 * 60 * 4); // Add 5 hours.
-  // let dateTemps5 = date5.getHours();
+  let dateTemps5 = date5.getHours();
 
   //  Daily time function to display intel
 
@@ -109,7 +111,7 @@ console.log( weather)
             Now
           </p>
           <p className="  font-display text-lg text-center self-center  text-white basis-1/4 my-2 ">
-            {weather.hourly && weather.hourly.temperature_2m[0]}°
+            {weather.hourly && weather.hourly.temperature_2m[dateTemps]}°
           </p>
         </div>
         <div className="flex flex-col border-solid	 border-y-1 border-white">
@@ -117,7 +119,7 @@ console.log( weather)
             {dateTemps2}h
           </p>
           <p className="  font-display text-lg text-center self-center  text-white basis-1/4 my-2">
-            {weather.hourly && weather.hourly.temperature_2m[1]}°
+            {weather.hourly && weather.hourly.temperature_2m[dateTemps2]}°
           </p>
         </div>
         <div className="flex flex-col">
@@ -125,7 +127,7 @@ console.log( weather)
             {date3.getHours()}h
           </p>
           <p className="  font-display text-lg text-center self-center  text-white basis-1/4 my-2">
-            {weather.hourly && weather.hourly.temperature_2m[2]}°
+            {weather.hourly && weather.hourly.temperature_2m[dateTemps3]}°
           </p>
         </div>
         <div className="flex flex-col">
@@ -133,7 +135,7 @@ console.log( weather)
             {date4.getHours()}h
           </p>
           <p className="  font-display text-lg text-center self-center  text-white basis-1/4 my-2">
-            {weather.hourly && weather.hourly.temperature_2m[3]}°
+            {weather.hourly && weather.hourly.temperature_2m[dateTemps4]}°
           </p>
         </div>
         <div className="flex flex-col">
@@ -141,7 +143,7 @@ console.log( weather)
             {date5.getHours()}h
           </p>
           <p className="  font-display text-lg text-center self-center  text-white basis-1/4 my-2">
-            {weather.hourly && weather.hourly.temperature_2m[4]}°
+            {weather.hourly && weather.hourly.temperature_2m[dateTemps5]}°
           </p>
         </div>
       </div>
