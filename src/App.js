@@ -11,7 +11,7 @@ function App({onSearchChange}) {
 
 
 
-const [weatherBx, setWeatherBx] = useState({})
+// const [weatherBx, setWeatherBx] = useState({})
 
 //   useEffect(() => {
 //     axios.get('https://api.open-meteo.com/v1/forecast?latitude=50.8333&longitude=4.35&hourly=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&current_weather=true&timezone=auto')
@@ -19,13 +19,17 @@ const [weatherBx, setWeatherBx] = useState({})
 // .then((res) => {
 //   setWeatherBx(res.data)
 //   console.log(weatherBx)
-//   })}, [weatherBx])
+//   })}, [])
   
 
-  const [weatherFetcho, setWeatherfetcho] = useState({weatherBx})
-
+  const [weatherFetcho, setWeatherfetcho] = useState({})
+  
 const HandleOnSearchChange = (searchData) => {
+  console.log(searchData.value)
+  console.log(searchData)
+ 
   const [lat, long] = searchData.value.split (" ")
+  
 
 
   const fetchWeather = axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&current_weather=true&timezone=auto`)

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 
 const Search = ({ onSearchChange }) => {
-  const [search, setSearch] = useState("bruxelles");
-  console.log(search)
+  const [search, setSearch] = useState(null);
+
 
   const loadOptions = (inputValue) => {
     console.log("am i here?");
@@ -36,6 +36,7 @@ const Search = ({ onSearchChange }) => {
       className="text-basis outline-none w-80"
       placeholder="Type Your city"
       debounceTimeout={600}
+    selectRef={"bruxelles"}
       value={search}
       onChange={handleOnChange}
       loadOptions={loadOptions}

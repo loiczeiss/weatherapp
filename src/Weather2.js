@@ -5,7 +5,7 @@ import "./App.css";
 
 
 const WeatherS = ({ weather }) => {
-console.log( weather)
+
 
 
 
@@ -13,7 +13,7 @@ console.log( weather)
 
   let commencons = new Date();
   let dateTemps = commencons.getHours();
-  console.log(dateTemps)
+
   var date2 = new Date(Date.now() + 1000 * 60 * 60 * 1); // Add 2 hours.
 
   let dateTemps2 = date2.getHours();
