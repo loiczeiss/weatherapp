@@ -1,12 +1,22 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AsyncPaginate } from "react-select-async-paginate";
 
 const Search = ({ onSearchChange }) => {
-  const [search, setSearch] = useState(null);
+useEffect(() => {
+  console.log(onSearchChange())
+  
+}, [])
+
+ 
+  const defaultValue ={
+    "value": "50.8465573 4.351697",
+    "label": "Bruxelles, Bruxelles-Capitale, Belgique"
+}
+  const [search, setSearch] = useState(defaultValue);
 
 
-  const loadOptions = (inputValue) => {
+  const loadOptions = (inputValue,) => {
     console.log("am i here?");
     return axios
       .get(
@@ -36,8 +46,9 @@ const Search = ({ onSearchChange }) => {
       className="text-basis outline-none w-80"
       placeholder="Type Your city"
       debounceTimeout={600}
-    selectRef={"bruxelles"}
+   
       value={search}
+      onLoad={loadOptions}
       onChange={handleOnChange}
       loadOptions={loadOptions}
     />

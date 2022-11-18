@@ -24,9 +24,10 @@ function App({onSearchChange}) {
 
   const [weatherFetcho, setWeatherfetcho] = useState({})
   
-const HandleOnSearchChange = (searchData) => {
-  console.log(searchData.value)
-  console.log(searchData)
+const HandleOnSearchChange = (searchData={
+  "value": "50.8465573 4.351697",
+  "label": "Bruxelles, Bruxelles-Capitale, Belgique"
+} ) => {
  
   const [lat, long] = searchData.value.split (" ")
   
@@ -53,10 +54,10 @@ Promise.all([fetchWeather ]).then(async (response) =>
     
 
 <div className="div h-1/6 flex flex-col	 ">
-      <Weather weather={weatherFetcho} /></div>
+      <Weather onLoad={HandleOnSearchChange} weather={weatherFetcho} /></div>
       <div className=" h-1/8  flex place-content-center	mt-4  justify-center">
       <div className="place-items-center		">
-      <Search onSearchChange={HandleOnSearchChange}/>
+      <Search  onSearchChange={HandleOnSearchChange}/>
       </div></div>
       <WeatherS weather={weatherFetcho}/>
     </div>
