@@ -2,7 +2,6 @@ import "./index.css";
 import "./Sidebar.css";
 import "./App.css";
 
-
 const Weather = ({ weather }) => {
   // Day definition for header
   //[FIXME:] refactor me into a fn
@@ -18,7 +17,10 @@ const Weather = ({ weather }) => {
     >
       <div className=" flex flex-col	">
         {/* header */}
-        <div id="cont" className="h-1/2 w-screen flex flex-row place-content- items-center">
+        <div
+          id="cont"
+          className="h-1/2 w-screen flex flex-row place-content- items-center"
+        >
           <div className=" flex basis-1/4 justify-center	 mt-4 font-display text-xl	text-white ">
             <svg
               className=" h-8  fill-white"

@@ -1,21 +1,13 @@
-
 import "./index.css";
 import "./Sidebar.css";
 import "./App.css";
 
-
 const WeatherS = ({ weather }) => {
-
-
-
-
   // Hourly time definition
 
   let commencons = new Date();
   let dateTemps = commencons.getHours();
-
   var date2 = new Date(Date.now() + 1000 * 60 * 60 * 1); // Add 2 hours.
-
   let dateTemps2 = date2.getHours();
   var date3 = new Date(Date.now() + 1000 * 60 * 60 * 2); // Add 3 hours.
   let dateTemps3 = date3.getHours();
@@ -35,12 +27,15 @@ const WeatherS = ({ weather }) => {
     "Saturday",
     "Sunday",
   ];
-  // weekdays.map((weekday, i) => console.log(0))
+
+  // Daily time definition
+
   let dateday = commencons.getDay();
   var dateB = new Date(Date.now() + 1000 * 60 * 60 * 24);
   let dateC = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
   let dateD = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
   let dateE = new Date(Date.now() + 1000 * 60 * 60 * 24 * 4);
+
   // [FIXME] refactor into map
 
   let day0 = weekdays[dateday];
@@ -49,19 +44,6 @@ const WeatherS = ({ weather }) => {
   let day3 = weekdays[dateD.getDay()];
   let day4 = weekdays[dateE.getDay()];
 
-
-
-
-
-  // Cond rendering svg on base of weathercode floats data 
-// function iconDisplay(){
-// let weathercode = 1
-// if( weathercode === 1 )
-// {
-//   return sun
-// }
-// }
-// console.log(iconDisplay)
   return (
     <div className="div flex flex-col h-full	">
       <div className="h-1/8	 flex flex-row justify-center pl-4 ">
@@ -149,101 +131,133 @@ const WeatherS = ({ weather }) => {
       </div>
       {/* Hourly temps */}
       {/* Daily Intel  */}
-    
-        <div className=" h-full flex flex-row justify-evenly		 ">
-          <div className=" flex flex-col  place-content-evenly text-basis align-center text-white ">
-            <p>{day0}</p>
-            <p>{day1}</p>
-            <p>{day2}</p>
-            <p>{day3}</p>
-            <p>{day4}</p>
-          </div>
-          <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
-          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[0]}.svg`} />
-          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[1]}.svg`} />
-          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[2]}.svg`} />
-          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[3]}.svg`} />
-          <img  className="h-8" alt="img " src={process.env.PUBLIC_URL + `/img/${ weather.daily && weather.daily.weathercode[4]}.svg`} />
 
-
-
-          </div>
-          <div className=" flex flex-col place-content-evenly">
-            <div className="flex flex-row justify-center	space-x-3">
-              <div className="flex flex-col">
-                {" "}
-                <p className=" font-display text-base text-center self-center  text-white">
-                  {weather.daily && weather.daily.temperature_2m_max[0]}°
-                </p>
-              </div>
-              <div className="flex flex-col">
-                {" "}
-                <p className="font-extralight text-base text-center self-center  text-white/50">
-                  {weather.daily && weather.daily.temperature_2m_min[0]}°
-                </p>
-              </div>
+      <div className=" h-full flex flex-row justify-evenly		 ">
+        <div className=" flex flex-col  place-content-evenly text-basis align-center text-white ">
+          <p>{day0}</p>
+          <p>{day1}</p>
+          <p>{day2}</p>
+          <p>{day3}</p>
+          <p>{day4}</p>
+        </div>
+        <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
+          <img
+            className="h-8"
+            alt="img "
+            src={
+              process.env.PUBLIC_URL +
+              `/img/${weather.daily && weather.daily.weathercode[0]}.svg`
+            }
+          />
+          <img
+            className="h-8"
+            alt="img "
+            src={
+              process.env.PUBLIC_URL +
+              `/img/${weather.daily && weather.daily.weathercode[1]}.svg`
+            }
+          />
+          <img
+            className="h-8"
+            alt="img "
+            src={
+              process.env.PUBLIC_URL +
+              `/img/${weather.daily && weather.daily.weathercode[2]}.svg`
+            }
+          />
+          <img
+            className="h-8"
+            alt="img "
+            src={
+              process.env.PUBLIC_URL +
+              `/img/${weather.daily && weather.daily.weathercode[3]}.svg`
+            }
+          />
+          <img
+            className="h-8"
+            alt="img "
+            src={
+              process.env.PUBLIC_URL +
+              `/img/${weather.daily && weather.daily.weathercode[4]}.svg`
+            }
+          />
+        </div>
+        <div className=" flex flex-col place-content-evenly">
+          <div className="flex flex-row justify-center	space-x-3">
+            <div className="flex flex-col">
+              {" "}
+              <p className=" font-display text-base text-center self-center  text-white">
+                {weather.daily && weather.daily.temperature_2m_max[0]}°
+              </p>
             </div>
-            <div className="flex flex-row justify-center  space-x-3">
-              <div className="flex flex-col">
-                {" "}
-                <p className=" font-display text-base text-center self-center  text-white">
-                  {weather.daily && weather.daily.temperature_2m_max[1]}°
-                </p>
-              </div>
-              <div className="flex flex-col">
-                {" "}
-                <p className="font-extralight text-base text-center self-center  text-white/50">
-                  {weather.daily && weather.daily.temperature_2m_min[1]}°
-                </p>
-              </div>
-            </div>{" "}
-            <div className="flex flex-row justify-center space-x-3">
-              <div className="flex flex-col">
-                {" "}
-                <p className=" font-display text-base text-center self-center  text-white">
-                  {weather.daily && weather.daily.temperature_2m_max[2]}°
-                </p>
-              </div>
-              <div className="flex flex-col">
-                {" "}
-                <p className="font-extralight text-base text-center self-center  text-white/50">
-                  {weather.daily && weather.daily.temperature_2m_min[2]}°
-                </p>
-              </div>
-            </div>{" "}
-            <div className="flex flex-row justify-center space-x-3">
-              <div className="flex flex-col">
-                {" "}
-                <p className=" font-display text-base text-center self-center  text-white">
-                  {weather.daily && weather.daily.temperature_2m_max[3]}°
-                </p>
-              </div>
-              <div className="flex flex-col">
-                {" "}
-                <p className="font-extralight text-base text-center self-center  text-white/50">
-                  {weather.daily && weather.daily.temperature_2m_min[3]}°
-                </p>
-              </div>
-            </div>{" "}
-            <div className="flex flex-row justify-center space-x-3">
-              <div className="flex flex-col">
-                {" "}
-                <p className="font-display text-base text-center self-center  text-white">
-                  {weather.daily && weather.daily.temperature_2m_max[4]}°
-                </p>
-              </div>
-              <div className="flex flex-col">
-                {" "}
-                <p className="font-extralight text-base text-center self-center  text-white/50">
-                  {weather.daily && weather.daily.temperature_2m_min[4]}°
-                </p>
-              </div>
+            <div className="flex flex-col">
+              {" "}
+              <p className="font-extralight text-base text-center self-center  text-white/50 border-solid">
+                {weather.daily && weather.daily.temperature_2m_min[0]}°
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-row justify-center  space-x-3">
+            <div className="flex flex-col">
+              {" "}
+              <p className=" font-display text-base text-center self-center  text-white">
+                {weather.daily && weather.daily.temperature_2m_max[1]}°
+              </p>
+            </div>
+            <div className="flex flex-col">
+              {" "}
+              <p className="font-extralight text-base text-center self-center  text-white/50 border-solid">
+                {weather.daily && weather.daily.temperature_2m_min[1]}°
+              </p>
+            </div>
+          </div>{" "}
+          <div className="flex flex-row justify-center space-x-3">
+            <div className="flex flex-col">
+              {" "}
+              <p className=" font-display text-base text-center self-center  text-white">
+                {weather.daily && weather.daily.temperature_2m_max[2]}°
+              </p>
+            </div>
+            <div className="flex flex-col">
+              {" "}
+              <p className="font-extralight text-base text-center self-center  text-white/50 border-solid">
+                {weather.daily && weather.daily.temperature_2m_min[2]}°
+              </p>
+            </div>
+          </div>{" "}
+          <div className="flex flex-row justify-center space-x-3">
+            <div className="flex flex-col">
+              {" "}
+              <p className=" font-display text-base text-center self-center  text-white">
+                {weather.daily && weather.daily.temperature_2m_max[3]}°
+              </p>
+            </div>
+            <div className="flex flex-col">
+              {" "}
+              <p className="font-extralight text-base text-center self-center  text-white/50 border-solid">
+                {weather.daily && weather.daily.temperature_2m_min[3]}°
+              </p>
+            </div>
+          </div>{" "}
+          <div className="flex flex-row justify-center space-x-3">
+            <div className="flex flex-col">
+              {" "}
+              <p className="font-display text-base text-center self-center  text-white">
+                {weather.daily && weather.daily.temperature_2m_max[4]}°
+              </p>
+            </div>
+            <div className="flex flex-col">
+              {" "}
+              <p className="font-extralight text-base text-center self-center  text-white/50 	">
+                {weather.daily && weather.daily.temperature_2m_min[4]}°
+              </p>
             </div>
           </div>
         </div>
-      
-      {/* Daily Intel  */}
       </div>
+
+      {/* Daily Intel  */}
+    </div>
   );
 };
 
