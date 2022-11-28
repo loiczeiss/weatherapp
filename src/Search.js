@@ -4,8 +4,8 @@ import { AsyncPaginate } from "react-select-async-paginate";
 
 const Search = ({ onSearchChange }) => {
   useEffect(() => {
-    console.log(onSearchChange());
-  }, []);
+    return onSearchChange
+  }, );
 
   const defaultValue = {
     value: "50.8465573 4.351697",

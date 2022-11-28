@@ -52,20 +52,22 @@ const WeatherS = ({ weather }) => {
 
       <div className="h-1/8  flex flex-row">
         <div className=" w-1/3 flex flex-col justify-start pl-4">
-          <p className="text-white text-xl">
+          <p className="text-white text-xl md:text-end ">
             {weather.current_weather && weather.current_weather.temperature}°
           </p>
 
-          <div className="flex flex-row justify-around font-extralight text-white">
+          <div className="flex flex-row justify-around md:justify-end font-extralight text-white">
             <div>
               {" "}
-              <p className="">
+              <p className="md:pr-9">
                 ▲{weather.daily && weather.daily.temperature_2m_max[0]}°
               </p>
             </div>
             <div>
               {" "}
-              <p>▼{weather.daily && weather.daily.temperature_2m_min[0]}°</p>
+              <p className="md:pr-1">
+                ▼{weather.daily && weather.daily.temperature_2m_min[0]}°
+              </p>
             </div>
           </div>
         </div>
@@ -76,10 +78,10 @@ const WeatherS = ({ weather }) => {
       {/* Temperature and min max display  */}
       {/* Feels display  */}
       <div className="h-1/6 w-1/3 flex flex-col justify-center text-center pl-4">
-        <p className=" font-display text-white">
+        {/* <p className=" font-display text-white">
           {weather.current_weather && weather.current_weather.weathercode}
-        </p>
-        <p className=" text-sm text-white font-extralight">
+        </p> */}
+        <p className=" text-sm text-white font-extralight md:text-end md:pr-8 md:text-">
           feels like{" "}
           {weather.current_weather && weather.hourly.apparent_temperature[0]}°
         </p>
