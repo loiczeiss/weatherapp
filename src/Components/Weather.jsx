@@ -1,6 +1,6 @@
-import "./index.css";
+import "../index.css";
 import "./Sidebar.css";
-import "./App.css";
+import "../App.css";
 
 const Weather = ({ weather }) => {
   // Day definition for header

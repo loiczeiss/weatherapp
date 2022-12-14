@@ -1,6 +1,7 @@
-import "./index.css";
+import "../index.css";
 import "./Sidebar.css";
-import "./App.css";
+
+import "../App.css";
 
 const WeatherS = ({ weather }) => {
   // Hourly time definition

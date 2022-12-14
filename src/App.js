@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import Weather from "./Weather";
-import Search from "./Search";
-import WeatherS from "./Weather2";
+import Weather from "./Components/Weather";
+import Search from "./Components/Search";
+import WeatherS from "./Components/Weather2";
 
 function App({ onSearchChange }) {
   const [weatherFetcho, setWeatherfetcho] = useState({});
@@ -54,6 +54,7 @@ function App({ onSearchChange }) {
       const weatherResponse = await response[0].data;
 
       setWeatherfetcho(weatherResponse);
+ 
     });
   };
 
