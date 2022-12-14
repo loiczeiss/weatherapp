@@ -16,6 +16,7 @@ function App({ onSearchChange }) {
 
   useEffect(() => {
     const Nightynight = () => {
+      console.log("the fuck is happening")
       let time = new Date();
       let night = time.getHours();
 
