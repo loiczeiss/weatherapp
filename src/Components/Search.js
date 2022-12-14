@@ -5,6 +5,7 @@ import { AsyncPaginate } from "react-select-async-paginate";
 const Search = ({ onSearchChange }) => {
   useEffect(() => {
     console.log(onSearchChange)
+    console.log("here")
   }, );
 
   const defaultValue = {
