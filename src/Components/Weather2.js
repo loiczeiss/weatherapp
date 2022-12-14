@@ -144,7 +144,7 @@ const WeatherS = ({ weather }) => {
           <p>{day4}</p>
         </div>
         <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
-          <img
+          {/* <img
             className="h-8"
             alt="img "
             src={
@@ -183,7 +183,7 @@ const WeatherS = ({ weather }) => {
               process.env.PUBLIC_URL +
               `/img/${weather.daily && weather.daily.weathercode[4]}.svg`
             }
-          />
+          /> */}
         </div>
         <div className=" flex flex-col place-content-evenly">
           <div className="flex flex-row justify-center	space-x-3">
