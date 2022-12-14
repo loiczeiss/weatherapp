@@ -12,8 +12,6 @@ function App({ onSearchChange }) {
 
 
 
-
-
   useEffect(() => {
     const Nightynight = () => {
       console.log("the fuck is happening")
