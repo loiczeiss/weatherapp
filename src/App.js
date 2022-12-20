@@ -5,14 +5,14 @@ import "./App.css";
 import Weather from "./Weather";
 import Search from "./Search";
 import WeatherS from "./Weather2";
-import { useEffect } from "react";
+
 
 function App({ onSearchChange }) {
   const [weatherFetcho, setWeatherfetcho] = useState({});
   const [weatherCode, setWeatherCode]= useState()
  
 
-console.log(weatherFetcho)
+
   const HandleOnSearchChange = (
     searchData = {
       value: "50.8465573 4.351697",
@@ -32,7 +32,7 @@ console.log(weatherFetcho)
   
     });
   };
-  console.log(weatherFetcho.current_weather && weatherFetcho.current_weather.weathercode)
+
 
   function bgColor(){
     switch (weatherFetcho.current_weather && weatherFetcho.current_weather.weathercode)
@@ -71,7 +71,7 @@ console.log(weatherFetcho)
   }
 
   }
-  console.log(bgColor())
+
   return (
     <div
       style={bgColor()}
