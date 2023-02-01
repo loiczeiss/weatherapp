@@ -4,19 +4,20 @@ import "../App.css";
 
 const Weather = ({ weather }) => {
   // Day definition for header
-  //[FIXME:] refactor me into a fn
-  const time = new Date();
-  const options = { weekday: "long", month: "long", day: "numeric" };
-  const timeDisplay = time.toLocaleDateString("en-EN", options);
+  const timeDisplay = () => {
+    const time = new Date();
+    const options = { weekday: "long", month: "long", day: "numeric" };
+    return time.toLocaleDateString("en-EN", options);
+  };
 
   return (
     <div
-      // style={{background : weathercode === 1 ? "linear-gradient(to top, #fc4a1a, #f7b733)" : null}}
       id="bg"
       className="h-full	flex flex-row place-content-center	items-center	 overflow-hidden 	"
     >
       <div className=" flex flex-col	">
         {/* header */}
+
         <div
           id="cont"
           className="h-1/2 w-screen flex flex-row place-content- items-center"
@@ -35,7 +36,7 @@ const Weather = ({ weather }) => {
           </div>
 
           <p className="self-center text-center font-display text-base	text-white basis-2/4 mt-6">
-            {timeDisplay}
+            {timeDisplay()}
           </p>
 
           <div className="basis-1/4 self-center text-center font-display text-base	text-white mt-6">

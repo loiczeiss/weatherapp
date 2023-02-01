@@ -9,30 +9,19 @@ function App({ onSearchChange }) {
   const [weatherFetcho, setWeatherfetcho] = useState({});
   const [sleepMode, setSleepMode] = useState(false);
 
-
-
-
   useEffect(() => {
     const Nightynight = () => {
-      console.log("the fuck is happening")
       let time = new Date();
       let night = time.getHours();
 
       if (night >= 20 || night <= 6) {
- 
         setTimeout(() => {
-          
           setSleepMode(true);
         }, 1000);
       }
-     
     };
     Nightynight();
   }, [sleepMode]);
-
-
-
-
 
   const HandleOnSearchChange = (
     searchData = {
@@ -42,10 +31,6 @@ function App({ onSearchChange }) {
   ) => {
     const [lat, long] = searchData.value.split(" ");
 
-
-
-
-
     const fetchWeather = axios.get(
       `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&hourly=temperature_2m,apparent_temperature,precipitation,rain,showers,snowfall,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&current_weather=true&timezone=auto`
     );
@@ -53,13 +38,8 @@ function App({ onSearchChange }) {
       const weatherResponse = await response[0].data;
 
       setWeatherfetcho(weatherResponse);
- 
     });
   };
-
-
-
-
 
   function bgColor() {
     switch (

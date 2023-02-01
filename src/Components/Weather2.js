@@ -1,6 +1,5 @@
 import "../index.css";
 import "./Sidebar.css";
-
 import "../App.css";
 
 const WeatherS = ({ weather }) => {
@@ -31,15 +30,13 @@ const WeatherS = ({ weather }) => {
 
   // Daily time definition
 
-  let dateday = commencons.getDay();
+  let dateA = commencons.getDay();
   var dateB = new Date(Date.now() + 1000 * 60 * 60 * 24);
   let dateC = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2);
   let dateD = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3);
   let dateE = new Date(Date.now() + 1000 * 60 * 60 * 24 * 4);
 
-  // [FIXME] refactor into map
-
-  let day0 = weekdays[dateday];
+  let day0 = weekdays[dateA];
   let day1 = weekdays[dateB.getDay()];
   let day2 = weekdays[dateC.getDay()];
   let day3 = weekdays[dateD.getDay()];
@@ -144,7 +141,7 @@ const WeatherS = ({ weather }) => {
           <p>{day4}</p>
         </div>
         <div className=" flex flex-col 	place-content-evenly	 text-basis  text-white">
-          {/* <img
+          <img
             className="h-8"
             alt="img "
             src={
@@ -183,7 +180,7 @@ const WeatherS = ({ weather }) => {
               process.env.PUBLIC_URL +
               `/img/${weather.daily && weather.daily.weathercode[4]}.svg`
             }
-          /> */}
+          />
         </div>
         <div className=" flex flex-col place-content-evenly">
           <div className="flex flex-row justify-center	space-x-3">

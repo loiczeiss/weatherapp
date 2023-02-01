@@ -5,15 +5,11 @@ import { AsyncPaginate } from "react-select-async-paginate";
 const Search = ({ onSearchChange }) => {
   useEffect(() => {
 
-    return onSearchChange;
+console.log(onSearchChange);
    
   }, [onSearchChange]);
 
-  useEffect(() => {
-    console.log('here')
-    console.log(onSearchChange)
-  }, ['here'])
-  
+
   const defaultValue = {
     value: "50.8465573 4.351697",
     label: "Bruxelles, Bruxelles-Capitale, Belgique",
