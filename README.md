@@ -4,7 +4,7 @@
 A react app using two rest APIs to display weather intels based
 on a location input.
 
-https://loiczeiss.github.io/weatherapp/
+[Link to the page](https://loiczeiss.github.io/weatherapp/)
 
 ## API Reference
 
