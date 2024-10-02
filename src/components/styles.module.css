@@ -1,0 +1,10 @@
+/* Add this to your global CSS file (e.g., styles/globals.css) */
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  

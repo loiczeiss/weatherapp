@@ -2,26 +2,35 @@ import { Card, Image, CardBody } from "@nextui-org/react";
 import { getWeatherData } from "@/actions";
 import Display from "@/components/display";
 import SidePanel from "@/components/sidePanel";
+import MockData from "@/mockData.json";
+import { bgSelection } from "@/actions/backGround";
+export default function Home() {
+  // const weatherData = await getWeatherData();
 
-export default async function Home() {
-  const weatherData = await getWeatherData();
+  // if (!weatherData) {
+  //   return <div>Sad...</div>;
+  // }
 
-  if (!weatherData) {
-    return <div>Sad...</div>;
-  }
+  let x = bgSelection(3);
+
+  //TO DO: Modify before injecting real API data
+
   return (
-    <div className="relative w-screen h-screen flex justify-center items-center overflow-hidden ">
+    <div className="relative w-screen md:h-screen flex justify-center items-center overflow-hidden ">
       {/* Blurred background */}
-      <div className="absolute inset-0 bg-cover bg-center filter blur-lg bg-[url('./assets/example.jpg')]"></div>
+      <div
+        style={{ backgroundImage: `url(${x})` }}
+        className="absolute -inset-4 bg-cover bg-center blur-lg"
+      ></div>
 
       {/* Clear div (window) */}
       <div
-        className="relative z-10 w-11/12 h-4/5 bg-cover bg-center bg-fixed  rounded-xl 
-      shadow-lg text-white flex flex-row bg-[url('./assets/example.jpg')] 
-  outline    outline-8  outline-white/25 "
+        className={`relative z-10 w-11/12 md:h-4/5 bg-cover bg-center bg-fixed  rounded-xl shadow-lg text-white flex md:flex-row  outline  outline-8  outline-white/25
+          flex-col my-4 md:my-0` }
+        style={{ backgroundImage: `url(${x})` }}
       >
-<Display/>
-<SidePanel/>
+        <Display />
+        <SidePanel />
       </div>
     </div>
   );
