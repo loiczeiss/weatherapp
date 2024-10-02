@@ -1,4 +1,4 @@
-"use server";
+
 import { getWeatherData } from "@/actions";
 import mock from "@/mockData.json";
 import { Card } from "@nextui-org/react";
@@ -7,6 +7,7 @@ import MockIcon from "/public/assets/icons/mockWeather.svg";
 import { WeatherDescriptions } from "@/actions/codeDescription";
 import { GetCurrentDateInGMT, monthString } from "@/actions/getDate";
 import { ModifyTitle } from "@/actions/modifyTitleBasedOnWeatherCode";
+import { IconSelection } from "@/actions/icons";
 import '@/app/styles.module.css'
 
 export default async function Display() {
@@ -15,6 +16,7 @@ export default async function Display() {
   const { hours, minutes, day, month, year } = GetCurrentDateInGMT();
 
 //TO DO: Modify before injecting real API data
+console.log(IconSelection(45))
 
   return (
     <article className="flex flex-col md:w-8/12 lg:w-9/12 h-full p-4 justify-between md:order-first order-last ">
@@ -43,7 +45,8 @@ export default async function Display() {
     >
       <p className="text-center">20:45</p>
       <div className="flex justify-center">
-        <MockIcon width={40} className="flex justify-center" />
+        {/* <MockIcon width={40} className="flex justify-center" /> */}
+        {/* <Image src={IconSelection(45)} alt='icon' /> */}
       </div>
       <p className="text-center">
         {mock.hourly.temperature_2m[index]}°C
