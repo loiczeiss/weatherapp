@@ -1,5 +1,8 @@
+
+
+import GeoLocation from "@/actions/geoLocation";
 import WeatherPage from "@/components/weatherPage";
-import { Modal } from "@nextui-org/react";
+
 
 export default function Home() {
   // const weatherData = await getWeatherData();
@@ -8,13 +11,14 @@ export default function Home() {
   //   return <div>Sad...</div>;
   // }
 
- 
+
+
 
   //TO DO: Modify before injecting real API data
 
   return (<>
-    <WeatherPage/>
-  
+    <WeatherPage />
+<GeoLocation/>
     </>
   );
 }

@@ -5,7 +5,7 @@ import SidePanel from "@/components/sidePanel";
 import MockData from "@/mockData.json";
 import { bgSelection } from "@/actions/backGround";
 export default function WeatherPage () {
-    let x = bgSelection(3);
+    let x = bgSelection(86);
 return (    <div className="relative w-screen md:h-screen flex justify-center items-center overflow-hidden ">
     {/* Blurred background */}
     <div
