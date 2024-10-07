@@ -7,6 +7,7 @@ import MockData from "@/mockData.json";
 import WindSvg from "/public/assets/icons/windSVG.svg";
 import { WeatherDescriptions } from "@/actions/codeDescription";
 import { useState } from "react";
+import SearchInput from "./searchInput";
 export default function SidePanel() {
 const [days, setDays] = useState(5)
 
@@ -37,10 +38,7 @@ const [days, setDays] = useState(5)
       <div className="flex flex-col  w-full items-center my-4 lg:my-8">
         <div className="  flex flex-row w-10/12 border border-white/25 rounded-lg">
           <GpsIcon width={25} className="fill-white/25 ml-2" />
-          <input
-            placeholder="Enter your location"
-            className="my-1 mx-2 bg-transparent w-full text-xs lg:text-xl"
-          />
+          <SearchInput/>
         </div>
         <h1 className="my-4 lg:my-8 text-5xl">{MockData.current.temperature_2m}°C</h1>
         <div className="flex justify-center">

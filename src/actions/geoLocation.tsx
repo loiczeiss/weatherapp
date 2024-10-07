@@ -4,8 +4,8 @@
 import { useState, useEffect } from "react";
 
 export default function GeoLocation() {
-    const [lat, setLat] = useState<number | null>(null);
-    const [long, setLong] = useState<number | null>(null);
+    const [lat, setLat] = useState<number | null>(42);
+    const [long, setLong] = useState<number | null>(2.56);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
