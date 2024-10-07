@@ -1,6 +1,6 @@
 "use client";
 
-
+;
 import { useState, useEffect } from "react";
 
 export default function GeoLocation() {
@@ -17,17 +17,23 @@ export default function GeoLocation() {
                     
                 },
                 (err) => {
-                    setError(`Geolocation error: ${err.message}`);
-                    setLat(42); // default latitude in case of error
-                    setLong(2.56); // default longitude in case of error
+                   fetchServerGeoLocation()
                 }
             );
-        } else {
-            setError("Geolocation is not supported by this browser.");
-            setLat(42); // default latitude
-            setLong(2.56); // default longitude
-        }
-    }, []); // Empty dependency array to ensure this effect runs only once on mount
+     
+    }}, []); // Empty dependency array to ensure this effect runs only once on mount
+
+    // Fallback function to get geolocation from the server via API route
+const fetchServerGeoLocation = async () => {
+    try {
+      const res = await fetch('/api/geo'); // Fetch from the API route
+      const data = await res.json();
+      setLat(data.lat);
+      setLong(data.lon);
+    } catch (error) {
+      setError("Unable to fetch geolocation from the server.");
+    }
+  };
 
     console.log(lat, long)
     return(<></>)

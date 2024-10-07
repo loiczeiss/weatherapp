@@ -1,6 +1,6 @@
 
 
-import GeoLocation from "@/actions/geoLocation";
+import GeoLocation from "@/client actions/geoLocation";
 import WeatherPage from "@/components/weatherPage";
 
 
