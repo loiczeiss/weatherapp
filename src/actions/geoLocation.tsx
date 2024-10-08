@@ -2,33 +2,32 @@
 
 
 import { useState, useEffect } from "react";
+import { LocationKeeper } from "./locationKeeper";
 
 export default function GeoLocation() {
-    const [lat, setLat] = useState<number | null>(42);
-    const [long, setLong] = useState<number | null>(2.56);
+
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
-                    setLat(pos.coords.latitude);
-                    setLong(pos.coords.longitude);
+                fetchAndUpdateLoc(pos.coords.latitude, pos.coords.longitude)
                     
                 },
                 (err) => {
                     setError(`Geolocation error: ${err.message}`);
-                    setLat(42); // default latitude in case of error
-                    setLong(2.56); // default longitude in case of error
+              fetchAndUpdateLoc(42, 2)
                 }
             );
         } else {
             setError("Geolocation is not supported by this browser.");
-            setLat(42); // default latitude
-            setLong(2.56); // default longitude
+     fetchAndUpdateLoc(42,2)
         }
     }, []); // Empty dependency array to ensure this effect runs only once on mount
+const fetchAndUpdateLoc = async (a:number,b:number) => {
+    await LocationKeeper(a,b)
+}
 
-    console.log(lat, long)
     return(<></>)
 }

@@ -35,7 +35,7 @@ const [days, setDays] = useState(5)
 
   return (
     <Card className="flex flex-col md:w-5/12 lg:w-3/12 items-center h-screen md:h-full " isBlurred>
-      <div className="flex flex-col  w-full items-center my-4 lg:my-8">
+      <div className="flex flex-col  w-full items-center my-4 lg:my-8 z-50">
         <div className="  flex flex-row w-10/12 border border-white/25 rounded-lg">
           <GpsIcon width={25} className="fill-white/25 ml-2" />
           <SearchInput/>

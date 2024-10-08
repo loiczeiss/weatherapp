@@ -4,13 +4,13 @@ interface Data {
   name: string;
 }
 
-export const FetchLocationApi = async (url:string) => {
+export const FetchLocationApi = async (url:string, options: {}) => {
   let data: Data | undefined = undefined;
   let isError = false;
   let error = "";
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, options);
     data = await res.json();
   } catch (e) {
     isError = true;
