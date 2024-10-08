@@ -1,7 +1,8 @@
 
 
 import GeoLocation from "@/actions/geoLocation";
-import WeatherPage from "@/components/weatherPage";
+import Intro from "@/components/introPage";
+import WeatherPage from "@/app/weather/page";
 
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
   //TO DO: Modify before injecting real API data
 
   return (<>
-    <WeatherPage />
+    <Intro />
 <GeoLocation/>
     </>
   );

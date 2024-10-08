@@ -3,20 +3,22 @@
 
 import { useState, useEffect } from "react";
 import { LocationKeeper } from "./locationKeeper";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function GeoLocation() {
 
     const [error, setError] = useState<string | null>(null);
-
+    const router = useRouter()
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
                 fetchAndUpdateLoc(pos.coords.latitude, pos.coords.longitude)
-                    
+                    router.push('/weather')
                 },
                 (err) => {
-                    setError(`Geolocation error: ${err.message}`);
+                    setError(`Geolocation error: ${err.message}`)
               fetchAndUpdateLoc(42, 2)
                 }
             );

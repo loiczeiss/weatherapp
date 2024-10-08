@@ -1,14 +1,15 @@
 import { FetchLocationApi } from "@/actions/fetchLocationApi";
-import { data } from "framer-motion/client";
-import { ChangeEvent, useState, useEffect } from "react";
+
+import { ChangeEvent, useState, useEffect, Key } from "react";
 import { LocationKeeper } from "@/actions/locationKeeper";
 import CloseIcon from "public/assets/icons/closeIcon.png";
 import Image from "next/image";
 import styles from "./styles.module.css";
+
 export default function SearchInput() {
   const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<any>();
-  const [ulClose, setUlClose] = useState(false);
+  const [ulClose, setUlClose] = useState(true);
 
   // Debounce mechanism to limit fetch calls
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function SearchInput() {
         console.log(results);
       } else {
         setResults([]); // Clear results if searchValue is empty
-        setUlClose(true)
+        setUlClose(true);
       }
     }, 300); // 300 ms delay for debouncing
 
@@ -43,19 +44,25 @@ export default function SearchInput() {
     };
   }, [searchValue]);
 
+  // Handle input changes
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setSearchValue(e.target.value); // Update search value
     setUlClose(false);
   };
 
+  // handle click on li elements
   const handleClick = (value: string, lat: number, lon: number) => {
     setSearchValue(value), fetchAndUpdateLoc(lat, lon), handleClose();
+    console.log(lat, lon);
   };
 
+  //close the ul element
   const handleClose = () => {
     setUlClose(true);
   };
+
+  // update lat & lon on the server side
   const fetchAndUpdateLoc = async (a: number, b: number) => {
     await LocationKeeper(a, b);
   };
@@ -70,11 +77,13 @@ export default function SearchInput() {
       />
 
       <ul
-      style = {{display: ulClose? "none":"block"}}
-        className={`${styles.customScrollbar} absolute bg-gray-400/50  z-100 top-16 mt-2 w-10/12 rounded-lg overflow-y-auto overscroll-y-auto max-h-80 `}
+        style={{ display: ulClose ? "none" : "block" }}
+        className={`${styles.customScrollbar} relative bg-gray-400/50  z-100  md:top-0 lg:top-0 lg:mt-2  rounded-lg overflow-y-auto overscroll-y-auto max-h-80 `}
       >
-        <li className="flex justify-end p-2 hover:bg-gray-800/75 rounded-lg"
-        onClick={()=>handleClose()}>
+        <li
+          className="flex justify-end p-2 hover:bg-gray-800/75 rounded-lg"
+          onClick={() => handleClose()}
+        >
           <Image
             src={CloseIcon}
             alt="close-icon"
@@ -83,17 +92,22 @@ export default function SearchInput() {
           />
         </li>
         {results &&
-          results.map((result, index) => (
-            <li
-              key={index}
-              className="border-y rounded-lg p-2 text-xs hover:bg-gray-800/75 "
-              onClick={() =>
-                handleClick(result.display_name, result.lat, result.lon)
-              }
-            >
-              {result.display_name}
-            </li> // Display each result
-          ))}
+          results.map(
+            (
+              result: { display_name: string; lat: number; lon: number },
+              index: Key | null | undefined
+            ) => (
+              <li
+                key={index}
+                className="border-y rounded-lg p-2 text-xs hover:bg-gray-800/75 "
+                onClick={() =>
+                  handleClick(result.display_name, result.lat, result.lon)
+                }
+              >
+                {result.display_name}
+              </li>
+            )
+          )}
       </ul>
     </>
   );

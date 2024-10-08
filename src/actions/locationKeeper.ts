@@ -1,4 +1,5 @@
 'use server'
+import { redirect } from "next/navigation";
 let lat:number=42
 let lon:number=2
 export async function LocationKeeper (latChange:number, lonChange:number) {
@@ -6,5 +7,6 @@ export async function LocationKeeper (latChange:number, lonChange:number) {
   lon= lonChange;
   console.log(lat,lon)
   return {lat, lon}
+
 
 }
