@@ -1,15 +1,27 @@
 import { FetchLocationApi } from "@/actions/fetchLocationApi";
-
-import { ChangeEvent, useState, useEffect, Key } from "react";
+import { ChangeEvent, useState, useEffect, Key, SetStateAction, Dispatch } from "react";
 import { LocationKeeper } from "@/actions/locationKeeper";
 import CloseIcon from "public/assets/icons/closeIcon.png";
 import Image from "next/image";
 import styles from "./styles.module.css";
 
-export default function SearchInput() {
+interface SearchInputProps {
+  searchInputModifier: {
+    placeholder: string;
+
+    position: string;
+    topAndWidth: string
+  };
+  redirectFromInput: () => void;
+  ulClose:boolean,
+  setUlClose:Dispatch<SetStateAction<boolean>>
+}
+
+export default function SearchInput({ searchInputModifier, redirectFromInput, setUlClose, ulClose }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState("");
-  const [results, setResults] = useState<any>();
-  const [ulClose, setUlClose] = useState(true);
+  const [results, setResults] = useState<any>([]);
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
 
   // Debounce mechanism to limit fetch calls
   useEffect(() => {
@@ -23,9 +35,21 @@ export default function SearchInput() {
 
       try {
         const data = await FetchLocationApi(url, options);
-        setResults(data.data); // Assuming the data is an array of LocationData
-      } catch (error) {
-        console.error("Error fetching location data:", error);
+        if (data.data && data.data.length > 0) {
+          setResults(data.data); // Assuming the data is an array of LocationData
+          setErrorMessage(null); // Clear the error message if data is fetched successfully
+        } else {
+          setResults([]); // Clear results if empty
+          setErrorMessage("Location not found"); // Set error message if the results are empty
+        }
+      } catch (error: any) {
+        if (error.response && error.response.status === 404) {
+          setErrorMessage("Location not found"); // Set error message if the response status is 404
+          setResults([]); // Clear previous results
+        } else {
+          console.error("Error fetching location data:", error);
+          setErrorMessage("An error occurred while fetching data");
+        }
       }
     };
 
@@ -36,6 +60,7 @@ export default function SearchInput() {
       } else {
         setResults([]); // Clear results if searchValue is empty
         setUlClose(true);
+        setErrorMessage(null); // Clear error message when the input is empty
       }
     }, 300); // 300 ms delay for debouncing
 
@@ -51,63 +76,67 @@ export default function SearchInput() {
     setUlClose(false);
   };
 
-  // handle click on li elements
+  // Handle click on li elements
   const handleClick = (value: string, lat: number, lon: number) => {
-    setSearchValue(value), fetchAndUpdateLoc(lat, lon), handleClose();
+    setSearchValue(value);
+    fetchAndUpdateLoc(lat, lon);
+    handleClose();
+
     console.log(lat, lon);
+
+    // Call redirectFromInput that was passed as a prop
+    if (redirectFromInput) {
+      redirectFromInput();
+    }
   };
 
-  //close the ul element
+  // Close the ul element
   const handleClose = () => {
     setUlClose(true);
+    setSearchValue("")
   };
 
-  // update lat & lon on the server side
+  // Update lat & lon on the server side
   const fetchAndUpdateLoc = async (a: number, b: number) => {
     await LocationKeeper(a, b);
   };
+  console.log(searchInputModifier.top)
 
   return (
     <>
       <input
         placeholder="Enter your location"
-        className="my-1 mx-2 bg-transparent w-full text-xs lg:text-xl"
+        className={`${searchInputModifier.placeholder}  my-1 mx-2 bg-transparent w-full text-xs lg:text-xl`}
         value={searchValue}
         onChange={handleChangeInput}
       />
 
       <ul
-        style={{ display: ulClose ? "none" : "block" }}
-        className={`${styles.customScrollbar} relative bg-gray-400/50  z-100  md:top-0 lg:top-0 lg:mt-2  rounded-lg overflow-y-auto overscroll-y-auto max-h-80 `}
+        style={{ display: ulClose ? "none" : "" }}
+        className={`${styles.customScrollbar}  ${searchInputModifier.position } ${searchInputModifier.topAndWidth}  bg-gray-400/50 z-100  lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-80`}
       >
         <li
           className="flex justify-end p-2 hover:bg-gray-800/75 rounded-lg"
           onClick={() => handleClose()}
         >
-          <Image
-            src={CloseIcon}
-            alt="close-icon"
-            width={20}
-            className="invert"
-          />
+          <Image src={CloseIcon} alt="close-icon" width={20} className="invert" />
         </li>
-        {results &&
+        {errorMessage ? (
+          <p className="text-center p-4 text-red-500">{errorMessage}</p> // Display error message if exists
+        ) : (
+          results &&
           results.map(
-            (
-              result: { display_name: string; lat: number; lon: number },
-              index: Key | null | undefined
-            ) => (
+            (result: { display_name: string; lat: number; lon: number }, index: Key | null | undefined) => (
               <li
                 key={index}
                 className="border-y rounded-lg p-2 text-xs hover:bg-gray-800/75 "
-                onClick={() =>
-                  handleClick(result.display_name, result.lat, result.lon)
-                }
+                onClick={() => handleClick(result.display_name, result.lat, result.lon)}
               >
                 {result.display_name}
               </li>
             )
-          )}
+          )
+        )}
       </ul>
     </>
   );

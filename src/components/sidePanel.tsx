@@ -10,7 +10,14 @@ import { useState } from "react";
 import SearchInput from "./searchInput";
 export default function SidePanel() {
 const [days, setDays] = useState(5)
+const [ulClose, setUlClose] = useState(true);
 
+const searchInputModifier = {
+  placeholder:"placeholder:text-left",
+
+  position: "absolute",
+  topAndWidth: "top-12 w-10/12 md:w-48 lg:top-16  lg:w-10/12"
+}
 
   function degreesToCardinal(degrees: number) {
     const directions = [
@@ -36,9 +43,9 @@ const [days, setDays] = useState(5)
   return (
     <Card className="flex flex-col md:w-5/12 lg:w-3/12 items-center h-screen md:h-full " isBlurred>
       <div className="flex flex-col  w-full items-center my-4 lg:my-8 z-50">
-        <div className="  flex flex-row w-10/12 border border-white/25 rounded-lg">
+        <div className="  flex flex-row w-10/12 border border-white/25 rounded-lg z-0">
           <GpsIcon width={25} className="fill-white/25 ml-2" />
-          <SearchInput/>
+          <SearchInput searchInputModifier={searchInputModifier} ulClose={ulClose} setUlClose={setUlClose}/>
         </div>
         <h1 className="my-4 lg:my-8 text-5xl">{MockData.current.temperature_2m}°C</h1>
         <div className="flex justify-center">

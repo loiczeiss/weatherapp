@@ -1,14 +1,28 @@
-'use client'
+"use client";
 import { Card } from "@nextui-org/react";
 import WeatherPage from "../app/weather/page";
 import HomePic from "public/assets/accueil.jpg";
 import SearchInput from "./searchInput";
+import { useState} from "react";
+import { useRouter } from "next/navigation";
 export default function Intro() {
+  const router = useRouter()
   let x = HomePic.src;
+  const [ulClose, setUlClose] = useState(true);
+const searchInputModifier = {
+  placeholder:"placeholder:text-center",
+topAndWidth:"",
+  position: "relative",
+}
+
+const redirectFromInput = () => {
+  router.push("/weather"); // This function should be defined somewhere, such as in Next.js
+  console.log("router")
+};
+
   return (
     <>
       <div className="relative w-screen h-screen flex justify-center items-center overflow-hidden ">
-
         <div
           style={{ backgroundImage: `url(${x})` }}
           className="absolute -inset-4 bg-cover bg-center blur-lg"
@@ -19,12 +33,23 @@ export default function Intro() {
         flex-col my-4 md:my-0 justify-center`}
           style={{ backgroundImage: `url(${x})` }}
         >
-          <Card isBlurred={true} className="h-4/5 self-center px-8 flex text-left items-center justify-center" >
-            {" "}
-         <div className="w-8/12">   <h1 className="text-2xl mb-16">Rivière: Your Go-To Weather Companion</h1>
-            <SearchInput/>
-            <p className="mt-16">Please enable location services  or manually enter your location.</p>
-       </div>
+          <Card className="h-4/5 self-center px-8 flex text-center items-center justify-center bg-gray-400/10 w-11/12 md:w-8/12 lg:w-6/12">
+            <div className="w-8/12 h-full">
+              <div className=" flex flex-col justify-center items-center h-2/6">
+                <h2 className="text-3xl font-bold text-white/75">Rivière</h2>
+                <h1 className="text-xl text-white/50 rounded-lg pt-4"> Your Go-To Weather Companion</h1>
+              </div>
+              <div className="h-2/6 ">
+               <div className="relative top-8"> <SearchInput searchInputModifier={searchInputModifier} redirectFromInput={redirectFromInput} ulClose={ulClose} setUlClose={setUlClose} /></div>
+              </div>
+              <div className="h-2/6 flex items-center">
+                <p className="text-gray-100 bg-black/25 rounded-lg"
+                style={{display: ulClose? "":"none"}}>
+                  Please enable location services or manually enter your
+                  location.
+                </p>
+              </div>
+            </div>
           </Card>
         </div>
       </div>
