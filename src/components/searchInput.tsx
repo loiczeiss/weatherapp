@@ -11,7 +11,7 @@ import { LocationKeeper } from "@/actions/locationKeeper";
 import CloseIcon from "public/assets/icons/closeIcon.png";
 import Image from "next/image";
 import styles from "./styles.module.css";
-
+import { fetchWeather } from "@/actions/weatherAPI";
 interface SearchInputProps {
   searchInputModifier: {
     placeholder: string;
@@ -91,9 +91,10 @@ export default function SearchInput({
   // Handle click on li elements
   const handleClick = (value: string, lat: number, lon: number) => {
     setSearchValue(value);
+    
     fetchAndUpdateLoc(lat, lon);
     handleClose();
-
+fetchWeather(lat,lon)
     console.log(lat, lon);
 
     // Call redirectFromInput that was passed as a prop

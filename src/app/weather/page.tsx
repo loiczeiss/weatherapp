@@ -3,9 +3,14 @@ import { getWeatherData } from "@/actions";
 import Display from "@/components/display";
 import SidePanel from "@/components/sidePanel";
 import MockData from "@/mockData.json";
+import { LocationKeeper } from "@/actions/locationKeeper";
+import { fetchWeather } from "@/actions/weatherAPI";
 import { bgSelection } from "@/actions/backGround";
-export default function WeatherPage () {
+export default async function WeatherPage () {
     let x = bgSelection(86);
+    const {lat,lon} = await LocationKeeper()
+    const weatherData = await fetchWeather(lat, lon)  //TO DO: Modify before injecting real API data
+  
 return (    <div className="relative w-screen md:h-screen flex justify-center items-center overflow-hidden ">
     {/* Blurred background */}
     <div
@@ -19,8 +24,8 @@ return (    <div className="relative w-screen md:h-screen flex justify-center it
         flex-col my-4 md:my-0` }
       style={{ backgroundImage: `url(${x})` }}
     >
-      <Display />
-      <SidePanel />
+      <Display weatherData={weatherData} />
+      <SidePanel  weatherData={weatherData}/>
     </div>
   </div>)
 }
