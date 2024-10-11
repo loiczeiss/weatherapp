@@ -1,5 +1,12 @@
 import { FetchLocationApi } from "@/actions/fetchLocationApi";
-import { ChangeEvent, useState, useEffect, Key, SetStateAction, Dispatch } from "react";
+import {
+  ChangeEvent,
+  useState,
+  useEffect,
+  Key,
+  SetStateAction,
+  Dispatch,
+} from "react";
 import { LocationKeeper } from "@/actions/locationKeeper";
 import CloseIcon from "public/assets/icons/closeIcon.png";
 import Image from "next/image";
@@ -8,16 +15,21 @@ import styles from "./styles.module.css";
 interface SearchInputProps {
   searchInputModifier: {
     placeholder: string;
-
+    bg: string;
     position: string;
-    topAndWidth: string
+    topAndWidth: string;
   };
   redirectFromInput: () => void;
-  ulClose:boolean,
-  setUlClose:Dispatch<SetStateAction<boolean>>
+  ulClose: boolean;
+  setUlClose: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function SearchInput({ searchInputModifier, redirectFromInput, setUlClose, ulClose }: SearchInputProps) {
+export default function SearchInput({
+  searchInputModifier,
+  redirectFromInput,
+  setUlClose,
+  ulClose,
+}: SearchInputProps) {
   const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<any>([]);
 
@@ -93,44 +105,55 @@ export default function SearchInput({ searchInputModifier, redirectFromInput, se
   // Close the ul element
   const handleClose = () => {
     setUlClose(true);
-    setSearchValue("")
+    setSearchValue("");
   };
 
   // Update lat & lon on the server side
   const fetchAndUpdateLoc = async (a: number, b: number) => {
     await LocationKeeper(a, b);
   };
-  console.log(searchInputModifier.top)
 
   return (
     <>
       <input
         placeholder="Enter your location"
-        className={`${searchInputModifier.placeholder}  my-1 mx-2 bg-transparent w-full text-xs lg:text-xl`}
+        className={`${searchInputModifier.placeholder} ${
+          searchInputModifier.bg ? searchInputModifier.bg : "bg-transparent"
+        }  rounded-lg my-1 mx-2  w-full text-xs lg:text-xl focus:outline-gray-300 focus:border-white/25`}
         value={searchValue}
         onChange={handleChangeInput}
       />
 
       <ul
         style={{ display: ulClose ? "none" : "" }}
-        className={`${styles.customScrollbar}  ${searchInputModifier.position } ${searchInputModifier.topAndWidth}  bg-gray-400/50 z-100  lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-80`}
+        className={`${styles.customScrollbar}  ${searchInputModifier.position} ${searchInputModifier.topAndWidth}  bg-gray-400/50 z-100  lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-80`}
       >
         <li
           className="flex justify-end p-2 hover:bg-gray-800/75 rounded-lg"
           onClick={() => handleClose()}
         >
-          <Image src={CloseIcon} alt="close-icon" width={20} className="invert" />
+          <Image
+            src={CloseIcon}
+            alt="close-icon"
+            width={20}
+            className="invert"
+          />
         </li>
         {errorMessage ? (
           <p className="text-center p-4 text-red-500">{errorMessage}</p> // Display error message if exists
         ) : (
           results &&
           results.map(
-            (result: { display_name: string; lat: number; lon: number }, index: Key | null | undefined) => (
+            (
+              result: { display_name: string; lat: number; lon: number },
+              index: Key | null | undefined
+            ) => (
               <li
                 key={index}
                 className="border-y rounded-lg p-2 text-xs hover:bg-gray-800/75 "
-                onClick={() => handleClick(result.display_name, result.lat, result.lon)}
+                onClick={() =>
+                  handleClick(result.display_name, result.lat, result.lon)
+                }
               >
                 {result.display_name}
               </li>

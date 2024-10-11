@@ -13,6 +13,7 @@ const searchInputModifier = {
   placeholder:"placeholder:text-center",
 topAndWidth:"",
   position: "relative",
+  bg: "bg-black/25"
 }
 
 const redirectFromInput = () => {
@@ -42,8 +43,8 @@ const redirectFromInput = () => {
               <div className="h-2/6 ">
                <div className="relative top-8"> <SearchInput searchInputModifier={searchInputModifier} redirectFromInput={redirectFromInput} ulClose={ulClose} setUlClose={setUlClose} /></div>
               </div>
-              <div className="h-2/6 flex items-center">
-                <p className="text-gray-100 bg-black/25 rounded-lg"
+              <div className="h-2/6 flex items-center text-center">
+                <p className="text-white/75 "
                 style={{display: ulClose? "":"none"}}>
                   Please enable location services or manually enter your
                   location.
