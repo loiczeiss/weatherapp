@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { LocationKeeper } from "./locationKeeper";
 import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { fetchWeather } from "./weatherAPI";
 
 export default function GeoLocation() {
 
@@ -15,6 +16,7 @@ export default function GeoLocation() {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
                 fetchAndUpdateLoc(pos.coords.latitude, pos.coords.longitude)
+                fetchWeather()
                     router.push('/weather')
                 },
                 (err) => {

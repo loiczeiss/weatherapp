@@ -49,6 +49,7 @@ export default function SearchInput({
         const data = await FetchLocationApi(url, options);
         if (data.data && data.data.length > 0) {
           setResults(data.data); // Assuming the data is an array of LocationData
+          console.log(results)
           setErrorMessage(null); // Clear the error message if data is fetched successfully
         } else {
           setResults([]); // Clear results if empty
@@ -94,7 +95,7 @@ export default function SearchInput({
     
     fetchAndUpdateLoc(lat, lon);
     handleClose();
-fetchWeather(lat,lon)
+fetchWeather()
     console.log(lat, lon);
 
     // Call redirectFromInput that was passed as a prop

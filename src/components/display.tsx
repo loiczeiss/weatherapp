@@ -11,11 +11,24 @@ import { IconSelection } from "@/actions/icons";
 import '@/app/styles.module.css'
 import HourlyCard from "./hourlyCard";
 
-export default async function Display() {
+export default async function Display({weatherData}) {
   //   const weatherData = await getWeatherData();
-const imgData = await IconSelection(45)
+  const imgDataArray = await Promise.all(
+    weatherData.hourly.weatherCode.slice(11, 21).map(async (code: number) => {
+        if (typeof code === 'number' && !isNaN(code)) {
+            return await IconSelection(code);
+        } else {
+            console.warn(`Invalid weather code: ${code}`);
+            return defaultIcon; // Provide a fallback icon for invalid codes
+        }
+    })
+);
+console.log(imgDataArray)
+console.log(weatherData.hourly.weatherCode.slice(11,21))
 
-  const { hours, minutes, day, month, year } = GetCurrentDateInGMT();
+console.log(weatherData.hourly.weatherCode[11])
+
+  const { hours, minutes, day, month, year } = await GetCurrentDateInGMT();
 
 //TO DO: Modify before injecting real API data
 
@@ -39,8 +52,11 @@ const imgData = await IconSelection(45)
           {WeatherDescriptions[96]}
         </h1>
         <div className="flex overflow-x-auto space-x-4 scrollbar-hidden my-4 md:my-0">
-  {mock.hourly.time.slice(0, 10).map((time: string, index: number) => (
-    <HourlyCard key={index} imgData={imgData} index={index} temperature={mock.hourly.temperature_2m[index]}/>
+  {weatherData.hourly.time.slice(11, 21).map((time: string, index: number, weatherCode:number) => (
+    <HourlyCard key={index} imgData={imgDataArray[index]} index={index} time={new Date(time).toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+    })} temperature={Math.floor(weatherData.hourly.temperature2m[index]*10)/10}/>
   ))}
 </div>
       </section>

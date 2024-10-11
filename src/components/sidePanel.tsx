@@ -55,15 +55,15 @@ export default function SidePanel({ weatherData }) {
           />
         </div>
         <h1 className="my-4 lg:my-8 text-5xl">
-          {MockData.current.temperature_2m}°C
+          {weatherData.current.temperature2m}°C
         </h1>
         <div className="flex justify-center">
           <WindSvg width={15} height={15} className="fill-white/75" />
           <p className="text-white/75 ml-2 text-xs">
-            {degreesToCardinal(MockData.current.wind_direction_10m)}
+            {degreesToCardinal(weatherData.current.windDirection10m)}
           </p>{" "}
           <p className="text-white/75 ml-2 text-xs">
-            {MockData.current.wind_speed_10m} km/h
+            {weatherData.current.windSpeed10m} km/h
           </p>
         </div>
       </div>
@@ -98,12 +98,12 @@ export default function SidePanel({ weatherData }) {
         <div className="h-80 md:h-60 lg:h-80 overflow-y-auto overscroll-y-auto scrollbar-hidden">
           {" "}
           {/* Set height for scrolling */}
-          {MockData.daily.time
+          {weatherData.daily.time
             .slice(0, days)
             .map((time: string, index: number) => {
-              const code = MockData.daily.weather_code[index]; // Corrected the dot before the square bracket
-              const minTemp = MockData.daily.temperature_2m_min[index]; // Min temperatures
-              const maxTemp = MockData.daily.temperature_2m_max[index]; // Corrected the typo here
+              const code = weatherData.daily.weatherCode[index]; // Corrected the dot before the square bracket
+              const minTemp = weatherData.daily.temperature2mMin[index]; // Min temperatures
+              const maxTemp = weatherData.daily.temperature2mMax[index]; // Corrected the typo here
 
               return (
                 // Ensure to return the JSX from the map function
@@ -115,16 +115,16 @@ export default function SidePanel({ weatherData }) {
                     <WindSvg width={20} height={20} className="fill-white/75" />
                   </div>
                   <div className="flex flex-col w-28">
-                    <p className="text-xs">{time}</p>
+                    {/* <p className="text-xs">{time}</p> */}
                     <p className="text-xs text-white/25">
                       {WeatherDescriptions[code]}
                     </p>{" "}
                     {/* Weather description using code */}
                   </div>
                   <div className="flex flex-col sm:ml-6 md:ml-2 lg:ml-4 border-l border-l-white/25 px-2 w-16">
-                    <p className="text-xs">{minTemp}°C</p>{" "}
+                    <p className="text-xs">{Math.floor(minTemp*10)/10}°C</p>{" "}
                     {/* Optional: add °C for clarity */}
-                    <p className="text-xs">{maxTemp}°C</p>{" "}
+                    <p className="text-xs">{Math.floor(maxTemp*10)/10}°C</p>{" "}
                     {/* Optional: add °C for clarity */}
                   </div>
                 </div>

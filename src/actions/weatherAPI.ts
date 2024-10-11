@@ -2,8 +2,8 @@
 
 import { fetchWeatherApi } from 'openmeteo';
 import { LocationKeeper } from './locationKeeper';
-export async function fetchWeather(latChange:number, lonChange:number) {
-const { lat, lon } = await LocationKeeper(latChange,lonChange)
+export async function fetchWeather() {
+const { lat, lon } = await LocationKeeper()
 const params = {
 	"latitude": lat,
 	"longitude": lon,
@@ -36,6 +36,7 @@ const daily = response.daily()!;
 
 // Note: The order of weather variables in the URL query and the indices below need to match!
  const weatherData = {
+    utcOffsetSeconds:utcOffsetSeconds,
 	current: {
 		time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
 		temperature2m: current.variables(0)!.value(),

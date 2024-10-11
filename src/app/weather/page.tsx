@@ -7,10 +7,10 @@ import { LocationKeeper } from "@/actions/locationKeeper";
 import { fetchWeather } from "@/actions/weatherAPI";
 import { bgSelection } from "@/actions/backGround";
 export default async function WeatherPage () {
-    let x = bgSelection(86);
-    const {lat,lon} = await LocationKeeper()
-    const weatherData = await fetchWeather(lat, lon)  //TO DO: Modify before injecting real API data
   
+    
+    const weatherData = await fetchWeather()  //TO DO: Modify before injecting real API data
+    let x = await bgSelection(weatherData.current.weatherCode);
 return (    <div className="relative w-screen md:h-screen flex justify-center items-center overflow-hidden ">
     {/* Blurred background */}
     <div

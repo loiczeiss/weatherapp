@@ -4,7 +4,8 @@ import { Card } from "@nextui-org/react";
 interface HourlyCardProps {
     imgData: StaticImageData;
     index:number;
-temperature:number
+temperature:number,
+time:string
 }
 
 export default function HourlyCard(props:HourlyCardProps){
@@ -14,7 +15,7 @@ export default function HourlyCard(props:HourlyCardProps){
               key={props.index}
               isBlurred
             >
-              <p className="text-center">20:45</p>
+              <p className="text-center">{props.time}</p>
               <div className="flex justify-center">
                 {/* <MockIcon width={40} className="flex justify-center" /> */}
              <Image src={props.imgData} alt="icon" className="invert"/> 
