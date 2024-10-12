@@ -15,6 +15,7 @@ import thunderIcon from 'public/assets/icons/95-96-97.png'
 export async function  IconSelection(code: number) {
   let iconUrl:StaticImageData
 
+
   switch (code) {
     case 0:
     case 1:
@@ -70,6 +71,5 @@ export async function  IconSelection(code: number) {
       default: iconUrl = thunderIcon
       break
   }
-
   return iconUrl;
 }

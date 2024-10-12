@@ -16,7 +16,7 @@ export default function GeoLocation() {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
                 fetchAndUpdateLoc(pos.coords.latitude, pos.coords.longitude)
-                fetchWeather()
+                fetchWeather(pos.coords.latitude, pos.coords.longitude)
                     router.push('/weather')
                 },
                 (err) => {

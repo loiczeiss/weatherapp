@@ -94,9 +94,10 @@ export default function SearchInput({
     setSearchValue(value);
     
     fetchAndUpdateLoc(lat, lon);
+
     handleClose();
-fetchWeather()
-    console.log(lat, lon);
+fetchWeather(lat,lon)
+ 
 
     // Call redirectFromInput that was passed as a prop
     if (redirectFromInput) {
@@ -111,8 +112,9 @@ fetchWeather()
   };
 
   // Update lat & lon on the server side
-  const fetchAndUpdateLoc = async (a: number, b: number) => {
-    await LocationKeeper(a, b);
+  const fetchAndUpdateLoc =  (a: number, b: number) => {
+    LocationKeeper(a, b);
+    console.log(LocationKeeper)
   };
 
   return (

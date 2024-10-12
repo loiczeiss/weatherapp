@@ -1,16 +1,24 @@
-'use server'
+'use server';
+
 import { redirect } from "next/navigation";
 
-let lat: number = 42;
-let lon: number = 2;
+// Initialize with undefined to distinguish from the default values
+let lat: number | undefined = undefined;
+let lon: number | undefined = undefined;
 
 export async function LocationKeeper(latChange?: number, lonChange?: number) {
-  // Use the passed values if available, otherwise keep the default values
+  // If values are provided, update lat/lon
   if (latChange !== undefined && lonChange !== undefined) {
-    lat = latChange;
-    lon = lonChange;
+    lat = Number(latChange);
+    lon = Number(lonChange);
   }
 
-  console.log(lat, lon);
-  return { lat, lon }; // Return the updated or default lat/lon
+  // If lat/lon are still undefined, set to defaults
+  if (lat === undefined || lon === undefined) {
+    lat = 42; // Default latitude
+    lon = 2;  // Default longitude
+  }
+
+
+  return { lat, lon };    // Return the current lat/lon
 }
