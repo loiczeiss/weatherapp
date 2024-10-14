@@ -1,6 +1,7 @@
 "use server";
 
 interface Data {
+  length: number;
   name: string;
 }
 

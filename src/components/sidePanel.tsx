@@ -2,12 +2,13 @@
 import "./styles.module.css";
 import Image from "next/image";
 import GpsIcon from "/public/assets/icons/localisationIcon.svg";
-import { IconSelection } from "@/actions/icons";
 import WindSvg from "/public/assets/icons/windSVG.svg";
-import { WeatherDescriptions } from "@/actions/codeDescription";
 import { SetStateAction, useEffect, useState } from "react";
 import SearchInput from "./searchInput";
+import { IconSelection } from "@/actions/icons";
+import { WeatherDescriptions } from "@/actions/codeDescription";
 import { Button, Card } from "@nextui-org/react";
+
 interface WeatherDataProps {
   weatherData: {
     utcOffsetSeconds: number;
@@ -133,7 +134,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
             15 days
           </Button>
         </div>
-        <div className="h-80 md:h-60 lg:h-80 overflow-y-auto overscroll-y-auto scrollbar-hidden">
+        <div className="h-80 md:h-60 lg:h-92 pb-8 overflow-y-auto overscroll-y-auto scrollbar-hidden">
           {weatherData.daily.time.slice(0, days).map((time, index) => {
             const code = weatherData.daily.weatherCode[index]; // Weather code
             const minTemp = weatherData.daily.temperature2mMin[index]; // Min temperatures
@@ -154,7 +155,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
                   />
                 </div>
                 <div className="flex flex-col w-28">
-                  <p className="text-xs text-white/25">
+                  <p className="text-xs text-white/50 pl-2">
                     {WeatherDescriptions[code]}
                   </p>
                 </div>

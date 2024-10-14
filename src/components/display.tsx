@@ -28,26 +28,27 @@ interface WeatherDataProps {
         temperature2mMax:Float32Array;
         temperature2mMin: Float32Array
     };}
-    searchParams?: {
+    searchParams: {
       lat: string;
       lon: string;
     };
   }
 
 export default async function Display({ weatherData, searchParams }:WeatherDataProps) {
-  // Log the weather codes to ensure they are being sliced correctly
-  const weatherCodes = weatherData.hourly.weatherCode.slice(11, 21);
-
-  // Fetch the icons corresponding to each weather code
-  // Fetch the icons corresponding to each weather code
-  const ImgData: StaticImageData[] = [];
-
-  for (const code of weatherCodes) {
-    const iconData = await IconSelection(code);
-    ImgData.push(iconData)}
 
 
-  const { hours, minutes, day, month, year } = await GetCurrentDateInGMT(searchParams);
+  const { hours, minutes, day, month, year } = await GetCurrentDateInGMT(weatherData);
+    // Log the weather codes to ensure they are being sliced correctly
+    const weatherCodes = weatherData.hourly.weatherCode.slice(hours as number -2, hours as number +8);
+
+    // Fetch the icons corresponding to each weather code
+    // Fetch the icons corresponding to each weather code
+    const ImgData: StaticImageData[] = [];
+  
+    for (const code of weatherCodes) {
+      const iconData = await IconSelection(code);
+      ImgData.push(iconData)}
+  
 
   return (
     <article className="flex flex-col md:w-8/12 lg:w-9/12 h-full p-4 justify-between md:order-first">
@@ -66,7 +67,7 @@ export default async function Display({ weatherData, searchParams }:WeatherDataP
         </h1>
 
         <div className="flex overflow-x-auto space-x-4 scrollbar-hidden my-4 md:my-0">
-          {weatherData.hourly.time.slice(11, 21).map((time: Date, index: number) => (
+          {weatherData.hourly.time.slice(hours as number -2, hours as number +8).map((time: Date, index: number) => (
             <HourlyCard
               key={index}
               imgData={ImgData[index]}  // Use the correct icon data for each time slot

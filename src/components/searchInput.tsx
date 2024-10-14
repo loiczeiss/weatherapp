@@ -33,7 +33,7 @@ export default function SearchInput({
   ulClose,
 }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<any>([]);
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
 
@@ -51,18 +51,16 @@ export default function SearchInput({
         const data = await FetchLocationApi(url, options);
         if (data.data && data.data.length > 0) {
           setResults(data.data); // Assuming the data is an array of LocationData
-          console.log(results);
           setErrorMessage(null); // Clear the error message if data is fetched successfully
         } else {
           setResults([]); // Clear results if empty
           setErrorMessage("Location not found"); // Set error message if the results are empty
         }
-      } catch (error) {
+      } catch (error: any) {
         if (error.response && error.response.status === 404) {
           setErrorMessage("Location not found"); // Set error message if the response status is 404
           setResults([]); // Clear previous results
         } else {
-          console.error("Error fetching location data:", error);
           setErrorMessage("An error occurred while fetching data");
         }
       }
@@ -71,7 +69,6 @@ export default function SearchInput({
     const handler = setTimeout(() => {
       if (searchValue) {
         fetchData(); // Call the fetch function
-        console.log(results);
       } else {
         setResults([]); // Clear results if searchValue is empty
         setUlClose(true);
