@@ -5,14 +5,42 @@ import { ModifyTitle } from "@/actions/modifyTitleBasedOnWeatherCode";
 import { IconSelection } from "@/actions/icons";
 import '@/app/styles.module.css'
 import HourlyCard from "./hourlyCard";
+import { StaticImageData } from "next/image";
 
-export default async function Display({ weatherData, searchParams }) {
+
+interface WeatherDataProps {
+  weatherData:{  utcOffsetSeconds: number;
+    current: {
+        time: Date;
+        temperature2m: number;
+        weatherCode: number;
+        windSpeed10m: number;
+        windDirection10m: number;
+    };
+    hourly: {
+        time: Date[];
+        temperature2m: Float32Array;
+        weatherCode: Float32Array;
+    };
+    daily: {
+        time: Date[];
+        weatherCode: Float32Array;
+        temperature2mMax:Float32Array;
+        temperature2mMin: Float32Array
+    };}
+    searchParams?: {
+      lat: string;
+      lon: string;
+    };
+  }
+
+export default async function Display({ weatherData, searchParams }:WeatherDataProps) {
   // Log the weather codes to ensure they are being sliced correctly
   const weatherCodes = weatherData.hourly.weatherCode.slice(11, 21);
 
   // Fetch the icons corresponding to each weather code
   // Fetch the icons corresponding to each weather code
-  let ImgData: object[]= []
+  let ImgData: StaticImageData[]= []
   const imgDataArray = await Promise.all(
     weatherCodes.map(async (code: number) => {
       const iconData = await IconSelection(code);
@@ -42,7 +70,7 @@ export default async function Display({ weatherData, searchParams }) {
         </h1>
 
         <div className="flex overflow-x-auto space-x-4 scrollbar-hidden my-4 md:my-0">
-          {weatherData.hourly.time.slice(11, 21).map((time: string, index: number) => (
+          {weatherData.hourly.time.slice(11, 21).map((time: Date, index: number) => (
             <HourlyCard
               key={index}
               imgData={ImgData[index]}  // Use the correct icon data for each time slot

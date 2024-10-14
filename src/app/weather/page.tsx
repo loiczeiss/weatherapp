@@ -5,9 +5,33 @@ import { fetchWeather } from "@/actions/weatherAPI";
 import Display from "@/components/display";
 import SidePanel from "@/components/sidePanel";
 import { useSearchParams } from 'next/navigation'
+interface WeatherDataProps {
+  weatherData:{  utcOffsetSeconds: number;
+    current: {
+        time: Date;
+        temperature2m: number;
+        weatherCode: number;
+        windSpeed10m: number;
+        windDirection10m: number;
+    };
+    hourly: {
+        time: Date[];
+        temperature2m: Float32Array;
+        weatherCode: Float32Array;
+    };
+    daily: {
+        time: Date[];
+        weatherCode: Float32Array;
+        temperature2mMax:Float32Array;
+        temperature2mMin: Float32Array
+    };}
+    searchParams: {
+      lat: string;
+      lon: string;
+    };
+  }
 
-
-export default async function WeatherPage({ searchParams }) {
+export default async function WeatherPage({ searchParams } : WeatherDataProps) {
   const { lat, lon } = searchParams;
   let weatherData;
   console.log(lat, lon)

@@ -3,15 +3,12 @@
 import { fetchWeatherApi } from 'openmeteo';
 
 export async function fetchWeather(lat: number, lon: number) {
-  // Check if lat and lon are valid numbers
-  // if (typeof lat !== 'number' || typeof lon !== 'number') {
-  //   throw new Error('Invalid latitude or longitude');
-  // }
+
 
 lat = Number(lat)
 lon= Number(lon)
 
-console.trace(`fetchWeather called with lat: ${lat}, lon: ${lon}`);
+
 
   const params = {
     latitude: lat,

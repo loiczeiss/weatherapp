@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { FetchLocationApi } from "@/actions/fetchLocationApi";
 import {
@@ -9,16 +9,16 @@ import {
   SetStateAction,
   Dispatch,
 } from "react";
-import { LocationKeeper } from "@/actions/locationKeeper";
+
 import CloseIcon from "public/assets/icons/closeIcon.png";
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 
 interface SearchInputProps {
   searchInputModifier: {
     placeholder: string;
-    bg: string;
+    bg?: string;
     position: string;
     topAndWidth: string;
   };
@@ -29,13 +29,12 @@ interface SearchInputProps {
 
 export default function SearchInput({
   searchInputModifier,
-  redirectFromInput,
   setUlClose,
   ulClose,
 }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<any>([]);
-const router = useRouter()
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
 
   // Debounce mechanism to limit fetch calls
@@ -52,7 +51,7 @@ const router = useRouter()
         const data = await FetchLocationApi(url, options);
         if (data.data && data.data.length > 0) {
           setResults(data.data); // Assuming the data is an array of LocationData
-          console.log(results)
+          console.log(results);
           setErrorMessage(null); // Clear the error message if data is fetched successfully
         } else {
           setResults([]); // Clear results if empty
@@ -95,29 +94,14 @@ const router = useRouter()
   // Handle click on li elements
   const handleClick = (value: string, lat: number, lon: number) => {
     setSearchValue(value);
-    
-    fetchAndUpdateLoc(lat, lon);
-
     handleClose();
-router.push(`/weather?lat=${lat}&lon=${lon}`)
- 
-
-    // Call redirectFromInput that was passed as a prop
-    // if (redirectFromInput) {
-    //   redirectFromInput();
-    // }
+    router.push(`/weather?lat=${lat}&lon=${lon}`);
   };
 
   // Close the ul element
   const handleClose = () => {
     setUlClose(true);
     setSearchValue("");
-  };
-
-  // Update lat & lon on the server side
-  const fetchAndUpdateLoc =  (a: number, b: number) => {
-    LocationKeeper(a, b);
-    console.log(LocationKeeper)
   };
 
   return (

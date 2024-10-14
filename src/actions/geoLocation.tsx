@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import { useRouter } from "next/navigation";
 import {
   Modal,
@@ -16,9 +15,10 @@ import {
 export default function GeoLocation() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalPlacement, setModalPlacement] = useState("center");
-
   const [error, setError] = useState<string | null>("");
   const router = useRouter();
+
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
