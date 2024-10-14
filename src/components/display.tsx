@@ -1,8 +1,4 @@
-import { getWeatherData } from "@/actions";
-import mock from "@/mockData.json";
-import { Card } from "@nextui-org/react";
-import Image from "next/image";
-import clearSkyIcon from "public/assets/icons/0-01.png"
+
 import { WeatherDescriptions } from "@/actions/codeDescription";
 import { GetCurrentDateInGMT, monthString } from "@/actions/getDate";
 import { ModifyTitle } from "@/actions/modifyTitleBasedOnWeatherCode";
@@ -10,24 +6,24 @@ import { IconSelection } from "@/actions/icons";
 import '@/app/styles.module.css'
 import HourlyCard from "./hourlyCard";
 
-export default async function Display({ weatherData }) {
+export default async function Display({ weatherData, searchParams }) {
   // Log the weather codes to ensure they are being sliced correctly
   const weatherCodes = weatherData.hourly.weatherCode.slice(11, 21);
 
   // Fetch the icons corresponding to each weather code
   // Fetch the icons corresponding to each weather code
-  let newArr : object[]= []
+  let ImgData: object[]= []
   const imgDataArray = await Promise.all(
     weatherCodes.map(async (code: number) => {
       const iconData = await IconSelection(code);
 
 
-  newArr.push(iconData)
+  ImgData.push(iconData)
     })
   );
 
 
-  const { hours, minutes, day, month, year } = await GetCurrentDateInGMT();
+  const { hours, minutes, day, month, year } = await GetCurrentDateInGMT(searchParams);
 
   return (
     <article className="flex flex-col md:w-8/12 lg:w-9/12 h-full p-4 justify-between md:order-first">
@@ -41,15 +37,15 @@ export default async function Display({ weatherData }) {
       </section>
 
       <section className="my-4 lg:my-0">
-        <h1 className={`md:text-6xl text-2xl text-end font-bold pb-6 pr-6`} style={ModifyTitle[96]}>
-          {WeatherDescriptions[96]}
+        <h1 className={`md:text-6xl text-2xl text-end font-bold pb-6 pr-6`} style={ModifyTitle[weatherData.current.weatherCode]}>
+          {WeatherDescriptions[weatherData.current.weatherCode]}
         </h1>
 
         <div className="flex overflow-x-auto space-x-4 scrollbar-hidden my-4 md:my-0">
           {weatherData.hourly.time.slice(11, 21).map((time: string, index: number) => (
             <HourlyCard
               key={index}
-              imgData={newArr[index]}  // Use the correct icon data for each time slot
+              imgData={ImgData[index]}  // Use the correct icon data for each time slot
               index={index}
               time={new Date(time).toLocaleTimeString('en-GB', {
                 hour: '2-digit',

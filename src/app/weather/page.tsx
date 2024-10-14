@@ -1,21 +1,30 @@
+'use server'
+
 import { bgSelection } from "@/actions/backGround";
-import { LocationKeeper } from "@/actions/locationKeeper";
 import { fetchWeather } from "@/actions/weatherAPI";
 import Display from "@/components/display";
 import SidePanel from "@/components/sidePanel";
+import { useSearchParams } from 'next/navigation'
 
-export default async function WeatherPage() {
 
-    const{lat,lon}= await LocationKeeper();
+export default async function WeatherPage({ searchParams }) {
+  const { lat, lon } = searchParams;
+  let weatherData;
+  console.log(lat, lon)
 
-console.log(lat)
+  // Check if lat and lon are available before fetching
+  if (!lat || !lon) {
+    console.error("Latitude or longitude is missing.");
+    return <div>Error: Latitude or longitude is missing.</div>;
+  }
 
- 
+  // Fetch the weather data once, store in weatherData
+  if (!weatherData) {
 
-  // Fetch weather data using the coordinates
-  const weatherData = await fetchWeather(lat, lon);
+    weatherData = await fetchWeather(lat, lon);
+  }
 
-  
+  // Select background image based on weather code
   let x = bgSelection(weatherData.current.weatherCode);
 
   return (
@@ -31,7 +40,7 @@ console.log(lat)
         className={`relative z-10 w-11/12 md:h-4/5 bg-cover bg-center bg-fixed rounded-xl shadow-lg text-white flex md:flex-row outline outline-8 outline-white/25 flex-col my-4 md:my-0`}
         style={{ backgroundImage: `url(${x})` }}
       >
-        <Display weatherData={weatherData} />
+        <Display weatherData={weatherData} searchParams={searchParams}/>
         <SidePanel weatherData={weatherData} />
       </div>
     </div>

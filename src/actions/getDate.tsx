@@ -1,14 +1,15 @@
 import Mock from "@/mockData.json"
 import { fetchWeather } from "./weatherAPI";
 
-export const GetCurrentDateInGMT = async (): Promise<{
+export const GetCurrentDateInGMT = async (searchParams): Promise<{
   hours: number | string;
   minutes: number | string;
   day: number;
   month: number;
   year: number;
 }> => {
-    const weatherData =await fetchWeather()
+  const {lat,lon}= searchParams
+    const weatherData =await fetchWeather(Number(lat), Number(lon))
     const currentDate = new Date();
 
     // Get the UTC day, month, and year

@@ -1,3 +1,5 @@
+'use client'
+
 import { FetchLocationApi } from "@/actions/fetchLocationApi";
 import {
   ChangeEvent,
@@ -11,7 +13,8 @@ import { LocationKeeper } from "@/actions/locationKeeper";
 import CloseIcon from "public/assets/icons/closeIcon.png";
 import Image from "next/image";
 import styles from "./styles.module.css";
-import { fetchWeather } from "@/actions/weatherAPI";
+import { useRouter } from "next/navigation"
+
 interface SearchInputProps {
   searchInputModifier: {
     placeholder: string;
@@ -19,7 +22,7 @@ interface SearchInputProps {
     position: string;
     topAndWidth: string;
   };
-  redirectFromInput: () => void;
+
   ulClose: boolean;
   setUlClose: Dispatch<SetStateAction<boolean>>;
 }
@@ -32,7 +35,7 @@ export default function SearchInput({
 }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<any>([]);
-
+const router = useRouter()
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
 
   // Debounce mechanism to limit fetch calls
@@ -96,13 +99,13 @@ export default function SearchInput({
     fetchAndUpdateLoc(lat, lon);
 
     handleClose();
-fetchWeather(lat,lon)
+router.push(`/weather?lat=${lat}&lon=${lon}`)
  
 
     // Call redirectFromInput that was passed as a prop
-    if (redirectFromInput) {
-      redirectFromInput();
-    }
+    // if (redirectFromInput) {
+    //   redirectFromInput();
+    // }
   };
 
   // Close the ul element

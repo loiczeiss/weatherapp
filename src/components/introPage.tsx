@@ -5,6 +5,7 @@ import HomePic from "public/assets/accueil.jpg";
 import SearchInput from "./searchInput";
 import { useState} from "react";
 import { useRouter } from "next/navigation";
+import GeoLocation from "@/actions/geoLocation";
 export default function Intro() {
   const router = useRouter()
   let x = HomePic.src;
@@ -16,10 +17,7 @@ topAndWidth:"",
   bg: "bg-black/25"
 }
 
-const redirectFromInput = () => {
-  router.push("/weather"); // This function should be defined somewhere, such as in Next.js
-  console.log("router")
-};
+
 
   return (
     <>
@@ -34,6 +32,7 @@ const redirectFromInput = () => {
         flex-col my-4 md:my-0 justify-center`}
           style={{ backgroundImage: `url(${x})` }}
         >
+          <GeoLocation/>
           <Card className="h-4/5 self-center px-8 flex text-center items-center justify-center bg-gray-400/10 w-11/12 md:w-8/12 lg:w-6/12">
             <div className="w-8/12 h-full">
               <div className=" flex flex-col justify-center items-center h-2/6">
@@ -41,7 +40,7 @@ const redirectFromInput = () => {
                 <h1 className="text-xl text-white/50 rounded-lg pt-4"> Your Go-To Weather Companion</h1>
               </div>
               <div className="h-2/6 ">
-               <div className="relative top-8"> <SearchInput searchInputModifier={searchInputModifier} redirectFromInput={redirectFromInput} ulClose={ulClose} setUlClose={setUlClose} /></div>
+               <div className="relative top-8"> <SearchInput searchInputModifier={searchInputModifier} ulClose={ulClose} setUlClose={setUlClose} /></div>
               </div>
               <div className="h-2/6 flex items-center text-center">
                 <p className="text-white/75 "

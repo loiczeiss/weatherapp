@@ -3,11 +3,11 @@
 import "./styles.module.css";
 import Image from "next/image";
 import GpsIcon from "/public/assets/icons/localisationIcon.svg";
-import MockData from "@/mockData.json";
+
 import { IconSelection } from "@/actions/icons";
 import WindSvg from "/public/assets/icons/windSVG.svg";
 import { WeatherDescriptions } from "@/actions/codeDescription";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import SearchInput from "./searchInput";
 import { Button, Card } from "@nextui-org/react";
 
@@ -25,14 +25,14 @@ export default function SidePanel({ weatherData }) {
   useEffect(() => {
     const fetchIcons = async () => {
       const weatherCodes = weatherData.daily.weatherCode.slice(0, days);
-      const icons = await Promise.all(weatherCodes.map(code => IconSelection(code)));
+      const icons = await Promise.all(weatherCodes.map((code: number) => IconSelection(code)));
       setIconData(icons); // Set icon data in state
     };
 
     fetchIcons();
   }, [days, weatherData.daily.weatherCode]); // Re-fetch icons if days or weather codes change
 
-  const degreesToCardinal = (degrees) => {
+  const degreesToCardinal = (degrees: number) => {
     const directions = [
       "North", "NorthEast", "East", "SouthEast", "South",
       "SouthWest", "West", "NorthWest", "North",
@@ -41,7 +41,7 @@ export default function SidePanel({ weatherData }) {
     return directions[index];
   };
 
-  const handleButtonsPress = (days) => {
+  const handleButtonsPress = (days: SetStateAction<number>) => {
     setDays(days);
   };
 
