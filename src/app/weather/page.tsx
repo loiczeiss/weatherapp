@@ -10,7 +10,7 @@ interface SearchParams {
   lon: string;
 }
 
-export async function WeatherPage({ searchParams }  : { searchParams: SearchParams }) {
+export default async function WeatherPage({ searchParams }  : { searchParams: SearchParams }) {
   const { lat, lon } = searchParams;
   let weatherData;
   console.log(lat, lon)
