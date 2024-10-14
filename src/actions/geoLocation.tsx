@@ -14,7 +14,8 @@ import {
 
 export default function GeoLocation() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [modalPlacement, setModalPlacement] = useState("center");
+  const [modalPlacement
+  ] = useState("center");
   const [error, setError] = useState<string | null>("");
   const router = useRouter();
 

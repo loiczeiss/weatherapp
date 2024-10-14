@@ -11,7 +11,7 @@ import snow from 'public/assets/snow3.avif'
 import thunder from 'public/assets/thunder.webp'
 
 export function bgSelection(code: number) {
-    let weather_code: number = code;
+    const weather_code: number = code;
     let bgUrl: string = "";
   
     switch (weather_code) {

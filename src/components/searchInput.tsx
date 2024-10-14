@@ -57,7 +57,7 @@ export default function SearchInput({
           setResults([]); // Clear results if empty
           setErrorMessage("Location not found"); // Set error message if the results are empty
         }
-      } catch (error: any) {
+      } catch (error) {
         if (error.response && error.response.status === 404) {
           setErrorMessage("Location not found"); // Set error message if the response status is 404
           setResults([]); // Clear previous results
