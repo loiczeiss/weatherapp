@@ -1,6 +1,6 @@
 import { fetchWeather } from "./weatherAPI";
 interface SearchParamsProps {
-  searchParams:{lat: string, lon:string}
+  lat: string, lon:string
 }
 export const GetCurrentDateInGMT = async (searchParams: SearchParamsProps): Promise<{
   hours: number | string;
