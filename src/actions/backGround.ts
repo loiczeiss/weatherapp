@@ -1,5 +1,3 @@
-
-import MockData from "@/mockData.json";
 import clearSky from "public/assets/clearSky.jpg"
 import drizzle from 'public/assets/drizzle.jpeg'
 import drizzle2 from 'public/assets/drizzle1.jpeg'
@@ -8,11 +6,10 @@ import heavyRain from 'public/assets/heavyRain.jpeg'
 import heavySnow from 'public/assets/heavySnow.jpg'
 import overcast from 'public/assets/overcast.webp'
 import partlyCloudy from 'public/assets/partlyCloudy.webp'
-import rain2 from 'public/assets/rain2.jpeg'
 import rain from 'public/assets/rain.jpeg'
 import snow from 'public/assets/snow3.avif'
 import thunder from 'public/assets/thunder.webp'
-import thunder1 from 'public/assets/thunder1.jpg'
+
 export function bgSelection(code: number) {
     let weather_code: number = code;
     let bgUrl: string = "";

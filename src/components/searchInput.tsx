@@ -33,7 +33,7 @@ export default function SearchInput({
   ulClose,
 }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState("");
-  const [results, setResults] = useState<any>([]);
+  const [results, setResults] = useState([]);
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
 

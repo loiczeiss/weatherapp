@@ -1,14 +1,14 @@
 "use client";
 import { Card } from "@nextui-org/react";
-import WeatherPage from "../app/weather/page";
+
 import HomePic from "public/assets/accueil.jpg";
 import SearchInput from "./searchInput";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+
 import GeoLocation from "@/actions/geoLocation";
 export default function Intro() {
-  const router = useRouter();
-  let x = HomePic.src;
+
+  const x = HomePic.src;
   const [ulClose, setUlClose] = useState(true);
   const searchInputModifier = {
     placeholder: "placeholder:text-center",

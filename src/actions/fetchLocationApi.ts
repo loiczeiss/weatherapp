@@ -4,7 +4,10 @@ interface Data {
   name: string;
 }
 
-export const FetchLocationApi = async (url:string, options: {}) => {
+export const FetchLocationApi = async (url:string, options: {
+  method: string,
+  headers: { accept: string },
+}) => {
   let data: Data | undefined = undefined;
   let isError = false;
   let error = "";

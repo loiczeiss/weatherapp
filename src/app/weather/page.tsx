@@ -4,7 +4,7 @@ import { bgSelection } from "@/actions/backGround";
 import { fetchWeather } from "@/actions/weatherAPI";
 import Display from "@/components/display";
 import SidePanel from "@/components/sidePanel";
-import { useSearchParams } from 'next/navigation'
+
 interface WeatherDataProps {
   weatherData:{  utcOffsetSeconds: number;
     current: {
@@ -49,7 +49,7 @@ export default async function WeatherPage({ searchParams } : WeatherDataProps) {
   }
 
   // Select background image based on weather code
-  let x = bgSelection(weatherData.current.weatherCode);
+  const x = bgSelection(weatherData.current.weatherCode);
 
   return (
     <div className="relative w-screen md:h-screen flex justify-center items-center overflow-hidden ">

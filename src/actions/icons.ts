@@ -1,6 +1,6 @@
 
 'use server'
-import { StaticImageData, StaticImport } from "next/dist/shared/lib/get-img-props";
+import { StaticImageData} from "next/dist/shared/lib/get-img-props";
 import clearSkyIcon from "public/assets/icons/0-01.png";
 import partlyCloudyIcon from "public/assets/icons/02-03.png";
 import fogIcon from "public/assets/icons/45-48.png";

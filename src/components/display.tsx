@@ -40,15 +40,11 @@ export default async function Display({ weatherData, searchParams }:WeatherDataP
 
   // Fetch the icons corresponding to each weather code
   // Fetch the icons corresponding to each weather code
-  let ImgData: StaticImageData[]= []
-  const imgDataArray = await Promise.all(
-    weatherCodes.map(async (code: number) => {
-      const iconData = await IconSelection(code);
+  const ImgData: StaticImageData[] = [];
 
-
-  ImgData.push(iconData)
-    })
-  );
+  for (const code of weatherCodes) {
+    const iconData = await IconSelection(code);
+    ImgData.push(iconData)}
 
 
   const { hours, minutes, day, month, year } = await GetCurrentDateInGMT(searchParams);

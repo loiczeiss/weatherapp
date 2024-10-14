@@ -1,7 +1,8 @@
-import Mock from "@/mockData.json"
 import { fetchWeather } from "./weatherAPI";
-
-export const GetCurrentDateInGMT = async (searchParams): Promise<{
+interface SearchParamsProps {
+  searchParams:{lat: string, lon:string}
+}
+export const GetCurrentDateInGMT = async (searchParams: SearchParamsProps): Promise<{
   hours: number | string;
   minutes: number | string;
   day: number;
