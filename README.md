@@ -21,9 +21,8 @@ browser geolocation.
 ![IntroScreenShot](https://github.com/user-attachments/assets/3db06abd-ec85-4735-8779-d3d36977e59c)
 ![WeatherPageScreenShot](https://github.com/user-attachments/assets/dbfc1db9-5cef-461f-a719-df85a8cb5b83)
 
-## Links
+## Link
 - Live Site: (https://riviereweather.vercel.app/)
-- Solution URL: (https://github.com/loiczeiss/RetroPokedex)
 
 ## Author
 
