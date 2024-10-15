@@ -21,7 +21,11 @@ browser geolocation.
 ![IntroScreenShot](https://github.com/user-attachments/assets/3db06abd-ec85-4735-8779-d3d36977e59c)
 ![WeatherPageScreenShot](https://github.com/user-attachments/assets/dbfc1db9-5cef-461f-a719-df85a8cb5b83)
 
+## Links
+- Live Site: (https://riviereweather.vercel.app/)
+- Solution URL: (https://github.com/loiczeiss/RetroPokedex)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Website - [Loïc Zeiss](https://github.com/loiczeiss)
+- LinkedIn - (https://www.linkedin.com/in/loiczeiss/)
