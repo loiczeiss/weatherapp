@@ -18,6 +18,8 @@ browser geolocation.
 - Vercel
 
 ## Screenshots
+![IntroScreenShot](https://github.com/user-attachments/assets/3db06abd-ec85-4735-8779-d3d36977e59c)
+![WeatherPageScreenShot](https://github.com/user-attachments/assets/dbfc1db9-5cef-461f-a719-df85a8cb5b83)
 
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
