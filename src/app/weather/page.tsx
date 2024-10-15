@@ -1,6 +1,6 @@
 'use server'
 
-import { bgSelection } from "@/actions/backGround";
+import { bgSelection } from "@/components/backGround";
 import { fetchWeather } from "@/actions/weatherAPI";
 import Display from "@/components/display";
 import SidePanel from "@/components/sidePanel";

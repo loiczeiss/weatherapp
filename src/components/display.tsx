@@ -1,7 +1,7 @@
 
-import { WeatherDescriptions } from "@/actions/codeDescription";
+import { WeatherDescriptions } from "@/components/codeDescription";
 import { GetCurrentDateInGMT, monthString } from "@/actions/getDate";
-import { ModifyTitle } from "@/actions/modifyTitleBasedOnWeatherCode";
+import { ModifyTitle } from "@/components/modifyTitleBasedOnWeatherCode";
 import { IconSelection } from "@/actions/icons";
 import '@/app/styles.module.css'
 import HourlyCard from "./hourlyCard";

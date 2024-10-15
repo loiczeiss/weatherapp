@@ -5,7 +5,7 @@ import HomePic from "public/assets/accueil.jpg";
 import SearchInput from "./searchInput";
 import { useState } from "react";
 
-import GeoLocation from "@/actions/geoLocation";
+import GeoLocation from "@/components/geoLocation";
 export default function Intro() {
 
   const x = HomePic.src;
