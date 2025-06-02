@@ -9,14 +9,14 @@ export const GetCurrentDateInGMT = async (weatherData: {
   };
   hourly?: {
     time: Date[];
-    temperature2m: Float32Array;
-    weatherCode: Float32Array;
+    temperature2m: number[];
+    weatherCode: number[];
   };
   daily?: {
     time: Date[];
-    weatherCode: Float32Array;
-    temperature2mMax: Float32Array;
-    temperature2mMin: Float32Array;
+    weatherCode: number[];
+    temperature2mMax: number[];
+    temperature2mMin: number[];
   };
 }): Promise<{
   hours: number | string;

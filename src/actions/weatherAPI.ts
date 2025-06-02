@@ -26,19 +26,16 @@ export async function fetchWeather(lat: number, lon: number) {
 
   // Helper function to form time ranges
   const range = (start: number, stop: number, step: number) =>
-    Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
+      Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 
   // Process first location. Add a for-loop for multiple locations or weather models
   const response = responses[0];
 
-  // Attribute for timezone and location
   const utcOffsetSeconds = response.utcOffsetSeconds()!;
-
   const current = response.current()!;
   const hourly = response.hourly()!;
   const daily = response.daily()!;
 
-  // Note: The order of weather variables in the URL query and the indices below need to match!
   const weatherData = {
     utcOffsetSeconds: utcOffsetSeconds,
     current: {
@@ -50,22 +47,22 @@ export async function fetchWeather(lat: number, lon: number) {
     },
     hourly: {
       time: range(
-        Number(hourly.time()),
-        Number(hourly.timeEnd()),
-        hourly.interval()
+          Number(hourly.time()),
+          Number(hourly.timeEnd()),
+          hourly.interval()
       ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
-      temperature2m: hourly.variables(0)!.valuesArray()!,
-      weatherCode: hourly.variables(1)!.valuesArray()!,
+      temperature2m: Array.from(hourly.variables(0)!.valuesArray()!),
+      weatherCode: Array.from(hourly.variables(1)!.valuesArray()!),
     },
     daily: {
       time: range(
-        Number(daily.time()),
-        Number(daily.timeEnd()),
-        daily.interval()
+          Number(daily.time()),
+          Number(daily.timeEnd()),
+          daily.interval()
       ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
-      weatherCode: daily.variables(0)!.valuesArray()!,
-      temperature2mMax: daily.variables(1)!.valuesArray()!,
-      temperature2mMin: daily.variables(2)!.valuesArray()!,
+      weatherCode: Array.from(daily.variables(0)!.valuesArray()!),
+      temperature2mMax: Array.from(daily.variables(1)!.valuesArray()!),
+      temperature2mMin: Array.from(daily.variables(2)!.valuesArray()!),
     },
   };
 
