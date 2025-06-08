@@ -10,7 +10,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 export default function GeoLocation() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

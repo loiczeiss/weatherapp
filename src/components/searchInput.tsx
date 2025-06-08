@@ -107,7 +107,7 @@ export default function SearchInput({
         placeholder="Enter your location"
         className={`${searchInputModifier.placeholder} ${
           searchInputModifier.bg ? searchInputModifier.bg : "bg-transparent"
-        }  rounded-lg my-1 mx-2  w-full text-xs lg:text-xl focus:outline-gray-300 focus:border-white/25`}
+        }  rounded-lg my-1 mx-2 h-6 w-full text-sm lg:text-xl focus:outline-gray-300 focus:border-white/25`}
         value={searchValue}
         onChange={handleChangeInput}
       />

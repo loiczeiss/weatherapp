@@ -1,10 +1,10 @@
 
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 
 interface ProvidersProps {
   children: React.ReactNode;
 }
 
 export default function Providers({ children }: ProvidersProps) {
-  return <NextUIProvider>{children}</NextUIProvider>
+  return <HeroUIProvider>{children}</HeroUIProvider>
 }
