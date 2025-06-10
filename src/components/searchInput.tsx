@@ -16,7 +16,7 @@ import styles from "./styles.module.css";
 import { useRouter } from "next/navigation";
 
 interface SearchInputProps {
-  searchInputModifier: {
+  searchInputModifier?: {
     placeholder: string;
     bg?: string;
     position: string;

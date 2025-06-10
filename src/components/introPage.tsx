@@ -1,17 +1,18 @@
 'use client';
-import { Button, Card } from '@heroui/react';
+import { Button, Card, Modal, ModalBody, ModalContent, ModalHeader, useDisclosure, Input } from '@heroui/react';
 
 import HomePic from 'public/assets/accueil.jpg';
-import SearchInput from './searchInput';
-import { useState } from 'react';
+
 
 import GeoLocation from '@/components/geoLocation';
-import { DrawerInput } from '@/components/drawerInput';
+import SearchInput from '@/components/searchInput';
+import { useState } from 'react';
 
 export default function Intro() {
-
+    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const[ulClose, setUlClose] = useState(false);
     const bgBackground = HomePic.src;
-    const [isOpen, setIsOpen] = useState(false);
+
 
     return (
         <>
@@ -22,7 +23,7 @@ export default function Intro() {
                 ></div>
 
 
-                <GeoLocation />
+                {/*<GeoLocation />*/}
                 <Card isBlurred
                       className=" self-center px-8 flex text-center items-center justify-between space-y-4 py-8 bg-gray-400/10 w-8/12 md:w-8/12 lg:w-6/12">
 
@@ -36,8 +37,12 @@ export default function Intro() {
                     </div>
 
 
-                    <Button onPress={() => setIsOpen(prev => !prev)}>Enter your location</Button>
-                    <DrawerInput></DrawerInput>
+                    <Button onPress={onOpen}>Enter your location</Button>
+                    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                        <ModalContent className={'self-center mx-8 bg-black/75'}>
+                          <SearchInput ulClose={ulClose} setUlClose={setUlClose}/>
+                        </ModalContent>
+                    </Modal>
                 </Card>
             </div>
 
