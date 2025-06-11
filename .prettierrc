@@ -1,29 +1,14 @@
 {
-  "trailingComma": "all",
-  "printWidth": 100,
   "semi": true,
   "singleQuote": true,
-  "tabWidth": 4,
-  "useTabs": false,
-  "bracketSpacing": true,
-  "bracketSameLine": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "printWidth": 100,
   "arrowParens": "always",
+  "bracketSpacing": true,
   "endOfLine": "lf",
-  "overrides": [
-    {
-      "files": "*.json",
-      "options": {
-        "tabWidth": 2
-      }
-    },
-    {
-      "files": "*.yml",
-      "options": {
-        "tabWidth": 2
-      }
-    }
-  ],
-  "plugins": [
-    "prettier-plugin-tailwindcss"
-  ]
+  "jsxSingleQuote": false,
+  "jsxBracketSameLine": false,
+  "proseWrap": "preserve",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
