@@ -6,7 +6,7 @@ import WindSvg from "/public/assets/icons/windSVG.svg";
 import { SetStateAction, useEffect, useState } from "react";
 import SearchInput from "./searchInput";
 import { WeatherDescriptions } from "@/components/codeDescription";
-import { Button, Card } from "@nextui-org/react";
+import { Button, Card } from "@heroui/react";
 import { StaticImageData } from "next/dist/shared/lib/get-img-props";
 import clearSkyIcon from "public/assets/icons/0-01.png";
 import partlyCloudyIcon from "public/assets/icons/02-03.png";

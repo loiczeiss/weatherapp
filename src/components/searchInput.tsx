@@ -1,154 +1,140 @@
-"use client";
+'use client';
 
-import { FetchLocationApi } from "@/actions/fetchLocationApi";
-import {
-  ChangeEvent,
-  useState,
-  useEffect,
-  Key,
-  SetStateAction,
-  Dispatch,
-} from "react";
-
-import CloseIcon from "public/assets/icons/closeIcon.png";
-import Image from "next/image";
-import styles from "./styles.module.css";
-import { useRouter } from "next/navigation";
+import { FetchLocationApi } from '@/actions/fetchLocationApi';
+import { ChangeEvent, useState, useEffect, Key, SetStateAction, Dispatch } from 'react';
+import styles from './styles.module.css';
+import { useRouter } from 'next/navigation';
+import { Input, Skeleton } from '@heroui/react';
 
 interface SearchInputProps {
-  searchInputModifier: {
-    placeholder: string;
-    bg?: string;
-    position: string;
-    topAndWidth: string;
-  };
-
   ulClose: boolean;
   setUlClose: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function SearchInput({
-  searchInputModifier,
-  setUlClose,
-  ulClose,
-}: SearchInputProps) {
-  const [searchValue, setSearchValue] = useState("");
-  const [results, setResults] = useState<any>([]);
+export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
+  const [searchValue, setSearchValue] = useState('');
+  const [results, setResults] = useState<{
+    display_name: string;
+    lat: number;
+    lon: number;
+  }[]>([]);
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // State to store error message
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Debounce mechanism to limit fetch calls
   useEffect(() => {
     const fetchData = async () => {
       const token = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
       const options = {
-        method: "GET",
-        headers: { accept: "application/json" },
+        method: 'GET',
+        headers: { accept: 'application/json' },
       };
       const url = `https://eu1.locationiq.com/v1/search?key=${token}&q=${searchValue}&format=json`;
 
       try {
+        setIsLoading(true);
         const data = await FetchLocationApi(url, options);
+
         if (data.data && data.data.length > 0) {
-          setResults(data.data); // Assuming the data is an array of LocationData
-          setErrorMessage(null); // Clear the error message if data is fetched successfully
+          setResults(
+            data.data as unknown as {
+              display_name: string;
+              lat: number;
+              lon: number;
+            }[]
+          );
+          setErrorMessage(null);
         } else {
-          setResults([]); // Clear results if empty
-          setErrorMessage("Location not found"); // Set error message if the results are empty
+          setResults([]);
+          setErrorMessage('Location not found');
         }
-      } catch (error: any) {
-        if (error.response && error.response.status === 404) {
-          setErrorMessage("Location not found"); // Set error message if the response status is 404
-          setResults([]); // Clear previous results
+      } catch (error: unknown) {
+        if (typeof error === 'object' && error !== null && 'response' in error) {
+          setErrorMessage('Location not found');
+          setResults([]);
         } else {
-          setErrorMessage("An error occurred while fetching data");
+          setErrorMessage('An error occurred while fetching data');
         }
+      } finally {
+        setIsLoading(false);
       }
     };
 
     const handler = setTimeout(() => {
       if (searchValue) {
-        fetchData(); // Call the fetch function
+        fetchData();
       } else {
-        setResults([]); // Clear results if searchValue is empty
+        setResults([]);
         setUlClose(true);
-        setErrorMessage(null); // Clear error message when the input is empty
+        setErrorMessage(null);
       }
-    }, 300); // 300 ms delay for debouncing
+    }, 300);
 
     return () => {
-      clearTimeout(handler); // Clean up the timeout on unmount or change
+      clearTimeout(handler);
     };
   }, [searchValue]);
 
-  // Handle input changes
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setSearchValue(e.target.value); // Update search value
+    setSearchValue(e.target.value);
     setUlClose(false);
   };
 
-  // Handle click on li elements
   const handleClick = (value: string, lat: number, lon: number) => {
     setSearchValue(value);
     handleClose();
     router.push(`/weather?lat=${lat}&lon=${lon}`);
   };
 
-  // Close the ul element
   const handleClose = () => {
     setUlClose(true);
-    setSearchValue("");
+    setSearchValue('');
   };
 
   return (
-    <>
-      <input
+    <div className="space-y-2 flex flex-col px-2 py-4 overscroll-y-auto">
+      <Input
+        isClearable
         placeholder="Enter your location"
-        className={`${searchInputModifier.placeholder} ${
-          searchInputModifier.bg ? searchInputModifier.bg : "bg-transparent"
-        }  rounded-lg my-1 mx-2  w-full text-xs lg:text-xl focus:outline-gray-300 focus:border-white/25`}
+        classNames={{ label: 'text-black/25 font-semibold', input: 'text-black/50 font-semibold' }}
+        className="rounded-lg font-semibold placeholder:font-semibold font-sans text-sm lg:text-xl focus:outline-gray-300 focus:border-white/25"
         value={searchValue}
         onChange={handleChangeInput}
+        onClear={() => {
+          setSearchValue('');
+          setResults([]);
+          setUlClose(true);
+          setErrorMessage(null);
+        }}
       />
 
       <ul
-        style={{ display: ulClose ? "none" : "" }}
-        className={`${styles.customScrollbar}  ${searchInputModifier.position} ${searchInputModifier.topAndWidth}  bg-gray-400/50 z-100  lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-80`}
+        style={{ display: ulClose ? 'none' : '' }}
+        className={`${styles.customScrollbar} z-100 lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-full`}
       >
-        <li
-          className="flex justify-end p-2 hover:bg-gray-800/75 rounded-lg"
-          onClick={() => handleClose()}
-        >
-          <Image
-            src={CloseIcon}
-            alt="close-icon"
-            width={20}
-            className="invert"
-          />
-        </li>
-        {errorMessage ? (
-          <p className="text-center p-4 text-red-500">{errorMessage}</p> // Display error message if exists
+        {isLoading ? (
+          <div className="flex flex-col space-y-1">
+            {[...Array(6)].map((_, index) => (
+              <Skeleton key={index}>
+                <li className="border-y rounded-lg p-2 py-3 text-xs font-semibold hover:bg-sky-900/75"></li>
+              </Skeleton>
+            ))}
+          </div>
+        ) : errorMessage ? (
+          <p className="text-center p-4 text-red-500">{errorMessage}</p>
         ) : (
-          results &&
-          results.map(
-            (
-              result: { display_name: string; lat: number; lon: number },
-              index: Key | null | undefined
-            ) => (
-              <li
-                key={index}
-                className="border-y rounded-lg p-2 text-xs hover:bg-gray-800/75 "
-                onClick={() =>
-                  handleClick(result.display_name, result.lat, result.lon)
-                }
-              >
-                {result.display_name}
-              </li>
-            )
-          )
+          results.map((result, index: Key) => (
+            <li
+              key={index}
+              className="border-y rounded-lg p-2 py-3 text-xs font-semibold hover:bg-sky-900/75"
+              onClick={() => handleClick(result.display_name, result.lat, result.lon)}
+            >
+              {result.display_name}
+            </li>
+          ))
         )}
       </ul>
-    </>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import  Image from "next/image";
-import { Card } from "@nextui-org/react";
+import { Card } from "@heroui/react";
 interface HourlyCardProps {
     imgData: StaticImageData;
     index:number;

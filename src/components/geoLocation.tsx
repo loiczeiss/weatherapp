@@ -10,7 +10,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 export default function GeoLocation() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -19,7 +19,7 @@ export default function GeoLocation() {
   >("center");
   const [error, setError] = useState<string | null>("");
   const router = useRouter();
-
+console.log(navigator.geolocation)
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -27,6 +27,7 @@ export default function GeoLocation() {
           router.push(
             `/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`
           );
+
         },
         (err) => {
           setError(
