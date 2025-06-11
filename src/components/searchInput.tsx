@@ -41,7 +41,7 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
               display_name: string;
               lat: number;
               lon: number;
-            }[]
+            }[],
           );
           setErrorMessage(null);
         } else {
@@ -115,9 +115,9 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
       >
         {isLoading ? (
           <div className="flex flex-col space-y-1">
-            {[...Array(6)].map((_, index) => (
-              <Skeleton key={index}>
-                <li className="border-y rounded-lg p-2 py-3 text-xs font-semibold hover:bg-sky-900/75"></li>
+            {[...Array(10)].map((_, index) => (
+              <Skeleton key={index} className={'rounded-lg'}>
+                <li className="border-y  p-2 py-3 h-12 rounded-lg text-xs font-semibold hover:bg-sky-900/75"></li>
               </Skeleton>
             ))}
           </div>

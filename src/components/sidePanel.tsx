@@ -1,24 +1,24 @@
-"use client";
-import "./styles.module.css";
-import Image from "next/image";
-import GpsIcon from "/public/assets/icons/localisationIcon.svg";
-import WindSvg from "/public/assets/icons/windSVG.svg";
-import { SetStateAction, useEffect, useState } from "react";
-import SearchInput from "./searchInput";
-import { WeatherDescriptions } from "@/components/codeDescription";
-import { Button, Card } from "@heroui/react";
-import { StaticImageData } from "next/dist/shared/lib/get-img-props";
-import clearSkyIcon from "public/assets/icons/0-01.png";
-import partlyCloudyIcon from "public/assets/icons/02-03.png";
-import fogIcon from "public/assets/icons/45-48.png";
-import drizzleIcon from "public/assets/icons/51-53-56.png";
-import drizzleIcon2 from "public/assets/icons/55-57.png";
-import rainIcon from "public/assets/icons/61-63-66.png";
-import rainIcon2 from "public/assets/icons/65-67.png";
-import snowIcon from "public/assets/icons/71-73-85.png";
-import snowIcon2 from "public/assets/icons/75-77-86.png";
-import showersIcon from "public/assets/icons/80-81-82.png";
-import thunderIcon from "public/assets/icons/95-96-97.png";
+'use client';
+import './styles.module.css';
+import Image from 'next/image';
+import GpsIcon from '/public/assets/icons/localisationIcon.svg';
+import WindSvg from '/public/assets/icons/windSVG.svg';
+import { SetStateAction, useEffect, useState } from 'react';
+import SearchInput from './searchInput';
+import { WeatherDescriptions } from '@/components/codeDescription';
+import { Button, Card } from '@heroui/react';
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
+import clearSkyIcon from 'public/assets/icons/0-01.png';
+import partlyCloudyIcon from 'public/assets/icons/02-03.png';
+import fogIcon from 'public/assets/icons/45-48.png';
+import drizzleIcon from 'public/assets/icons/51-53-56.png';
+import drizzleIcon2 from 'public/assets/icons/55-57.png';
+import rainIcon from 'public/assets/icons/61-63-66.png';
+import rainIcon2 from 'public/assets/icons/65-67.png';
+import snowIcon from 'public/assets/icons/71-73-85.png';
+import snowIcon2 from 'public/assets/icons/75-77-86.png';
+import showersIcon from 'public/assets/icons/80-81-82.png';
+import thunderIcon from 'public/assets/icons/95-96-97.png';
 
 // Icon selection logic
 const iconMap: { [key: number]: StaticImageData } = {
@@ -89,17 +89,13 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
   const [ulClose, setUlClose] = useState(true);
   const [iconData, setIconData] = useState<string[]>([]); // State for icon data
 
-  const searchInputModifier = {
-    placeholder: "placeholder:text-left",
-    position: "absolute",
-    topAndWidth: "top-12 w-10/12 md:w-48 lg:top-16 lg:w-10/12",
-  };
+
 
   useEffect(() => {
     const fetchIcons = async () => {
       const weatherCodes = weatherData.daily.weatherCode.slice(0, days);
       const icons = await Promise.all(
-        weatherCodes.map((code: number) => IconSelection(code))
+        weatherCodes.map((code: number) => IconSelection(code)),
       );
       setIconData(icons); // Set icon data in state
     };
@@ -109,15 +105,15 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
 
   const degreesToCardinal = (degrees: number) => {
     const directions = [
-      "North",
-      "NorthEast",
-      "East",
-      "SouthEast",
-      "South",
-      "SouthWest",
-      "West",
-      "NorthWest",
-      "North",
+      'North',
+      'NorthEast',
+      'East',
+      'SouthEast',
+      'South',
+      'SouthWest',
+      'West',
+      'NorthWest',
+      'North',
     ];
     const index = Math.round(degrees / 45) % 8;
     return directions[index];
@@ -137,7 +133,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
           <div className="flex flex-row w-10/12 border border-white/25 rounded-lg z-0">
             <GpsIcon width={25} className="fill-white/25 ml-2" />
             <SearchInput
-              searchInputModifier={searchInputModifier}
+
               ulClose={ulClose}
               setUlClose={setUlClose}
             />
@@ -160,7 +156,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
           <div className="flex lg:flex-row justify-between mb-4 md:mb-0 lg:mb-4 mt-6 md:mt-0 lg:mt-4">
             <Button
               className={`${
-                days === 5 ? "bg-black/25" : "bg-transparent"
+                days === 5 ? 'bg-black/25' : 'bg-transparent'
               } text-white`}
               onClick={() => handleButtonsPress(5)}
             >
@@ -168,7 +164,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
             </Button>
             <Button
               className={`${
-                days === 10 ? "bg-black/25" : "bg-transparent"
+                days === 10 ? 'bg-black/25' : 'bg-transparent'
               } text-white`}
               onClick={() => handleButtonsPress(10)}
             >
@@ -176,7 +172,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
             </Button>
             <Button
               className={`${
-                days === 15 ? "bg-black/25" : "bg-transparent"
+                days === 15 ? 'bg-black/25' : 'bg-transparent'
               } text-white`}
               onClick={() => handleButtonsPress(15)}
             >
@@ -194,7 +190,8 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
                   key={index}
                   className="flex flex-row mt-2 lg:w-60 items-center lg:my-4"
                 >
-                  <div className="flex items-center sm:mx-2 md:mx-0 lg:mx-2 bg-white/5 w-10 h-10 justify-center rounded-lg">
+                  <div
+                    className="flex items-center sm:mx-2 md:mx-0 lg:mx-2 bg-white/5 w-10 h-10 justify-center rounded-lg">
                     <Image
                       src={iconData[index]} // Use the icon from the state
                       width={20}
