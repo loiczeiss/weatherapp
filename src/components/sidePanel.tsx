@@ -52,9 +52,6 @@ const iconMap: { [key: number]: StaticImageData } = {
   99: thunderIcon,
 };
 
-async function IconSelection(code: number): Promise<StaticImageData> {
-  return iconMap[code] || thunderIcon; // Fallback to thunderIcon if code is not found
-}
 
 interface WeatherDataProps {
   weatherData: {
@@ -92,16 +89,17 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
 
 
   useEffect(() => {
-    const fetchIcons = async () => {
+    const fetchIcons = () => {
       const weatherCodes = weatherData.daily.weatherCode.slice(0, days);
-      const icons = await Promise.all(
-        weatherCodes.map((code: number) => IconSelection(code)),
+
+      const icons: StaticImageData[] = Array.from(weatherCodes).map(
+        (code: number) => iconMap[code] || thunderIcon
       );
-      setIconData(icons); // Set icon data in state
+      setIconData(icons as unknown as string[]);
     };
 
     fetchIcons();
-  }, [days, weatherData.daily.weatherCode]); // Re-fetch icons if days or weather codes change
+  }, [days, weatherData.daily.weatherCode]);
 
   const degreesToCardinal = (degrees: number) => {
     const directions = [
@@ -158,7 +156,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
               className={`${
                 days === 5 ? 'bg-black/25' : 'bg-transparent'
               } text-white`}
-              onClick={() => handleButtonsPress(5)}
+              onPress={() => handleButtonsPress(5)}
             >
               5 days
             </Button>
@@ -166,7 +164,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
               className={`${
                 days === 10 ? 'bg-black/25' : 'bg-transparent'
               } text-white`}
-              onClick={() => handleButtonsPress(10)}
+              onPress={() => handleButtonsPress(10)}
             >
               10 days
             </Button>
@@ -174,7 +172,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
               className={`${
                 days === 15 ? 'bg-black/25' : 'bg-transparent'
               } text-white`}
-              onClick={() => handleButtonsPress(15)}
+              onPress={() => handleButtonsPress(15)}
             >
               15 days
             </Button>
