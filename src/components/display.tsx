@@ -1,7 +1,7 @@
 
-import { WeatherDescriptions } from "@/components/codeDescription";
+import { WeatherDescriptions } from "@/app/utils/codeDescription";
 import { GetCurrentDateInGMT, monthString } from "@/actions/getDate";
-import { ModifyTitle } from "@/components/modifyTitleBasedOnWeatherCode";
+import { ModifyTitle } from "@/app/utils/modifyTitleBasedOnWeatherCode";
 import { IconSelection } from "@/actions/icons";
 import '@/app/styles.module.css'
 import HourlyCard from "./hourlyCard";
@@ -28,13 +28,10 @@ interface WeatherDataProps {
         temperature2mMax:Float32Array;
         temperature2mMin: Float32Array
     };}
-    searchParams: {
-      lat: string;
-      lon: string;
-    };
+
   }
 
-export default async function Display({ weatherData, searchParams }:WeatherDataProps) {
+export default async function Display({ weatherData }:WeatherDataProps) {
 
 
   const { hours, minutes, day, month, year } = await GetCurrentDateInGMT(weatherData);
@@ -67,18 +64,20 @@ export default async function Display({ weatherData, searchParams }:WeatherDataP
         </h1>
 
         <div className="flex overflow-x-auto space-x-4 scrollbar-hidden my-4 md:my-0">
-          {weatherData.hourly.time.slice(hours as number -2, hours as number +8).map((time: Date, index: number) => (
-            <HourlyCard
-              key={index}
-              imgData={ImgData[index]}  // Use the correct icon data for each time slot
-              index={index}
-              time={new Date(time).toLocaleTimeString('en-GB', {
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
-              temperature={Math.floor(weatherData.hourly.temperature2m[index] * 10) / 10}
-            />
-          ))}
+          {Object.entries(weatherData.hourly.time)
+            .slice(hours as number - 2, hours as number + 8)
+            .map(([key, time]: [string, Date], index: number) => (
+              <HourlyCard
+                key={key}
+                imgData={ImgData[index]}
+                index={index}
+                time={new Date(time).toLocaleTimeString('en-GB', {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+                temperature={Math.floor(weatherData.hourly.temperature2m[index] * 10) / 10}
+              />
+            ))}
         </div>
       </section>
     </article>
