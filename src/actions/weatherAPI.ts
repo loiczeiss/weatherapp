@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import { fetchWeatherApi } from "openmeteo";
+import { fetchWeatherApi } from 'openmeteo';
 
 export async function fetchWeather(lat: number, lon: number) {
   lat = Number(lat);
@@ -10,18 +10,18 @@ export async function fetchWeather(lat: number, lon: number) {
     latitude: lat,
     longitude: lon,
     current: [
-      "temperature_2m",
-      "weather_code",
-      "wind_speed_10m",
-      "wind_direction_10m",
+      'temperature_2m',
+      'weather_code',
+      'wind_speed_10m',
+      'wind_direction_10m',
     ],
-    hourly: ["temperature_2m", "weather_code"],
-    daily: ["weather_code", "temperature_2m_max", "temperature_2m_min"],
-    timezone: "auto",
+    hourly: ['temperature_2m', 'weather_code'],
+    daily: ['weather_code', 'temperature_2m_max', 'temperature_2m_min'],
+    timezone: 'auto',
     forecast_days: 16,
   };
 
-  const url = "https://api.open-meteo.com/v1/forecast";
+  const url = 'https://api.open-meteo.com/v1/forecast';
   const responses = await fetchWeatherApi(url, params);
 
   // Helper function to form time ranges
@@ -52,7 +52,7 @@ export async function fetchWeather(lat: number, lon: number) {
       time: range(
         Number(hourly.time()),
         Number(hourly.timeEnd()),
-        hourly.interval()
+        hourly.interval(),
       ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
       temperature2m: hourly.variables(0)!.valuesArray()!,
       weatherCode: hourly.variables(1)!.valuesArray()!,
@@ -61,7 +61,7 @@ export async function fetchWeather(lat: number, lon: number) {
       time: range(
         Number(daily.time()),
         Number(daily.timeEnd()),
-        daily.interval()
+        daily.interval(),
       ).map((t) => new Date((t + utcOffsetSeconds) * 1000)),
       weatherCode: daily.variables(0)!.valuesArray()!,
       temperature2mMax: daily.variables(1)!.valuesArray()!,

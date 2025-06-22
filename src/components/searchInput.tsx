@@ -1,7 +1,14 @@
 'use client';
 
 import { FetchLocationApi } from '@/actions/fetchLocationApi';
-import { ChangeEvent, useState, useEffect, Key, SetStateAction, Dispatch } from 'react';
+import {
+  ChangeEvent,
+  useState,
+  useEffect,
+  Key,
+  SetStateAction,
+  Dispatch,
+} from 'react';
 import styles from './styles.module.css';
 import { useRouter } from 'next/navigation';
 import { Input, Skeleton } from '@heroui/react';
@@ -13,11 +20,13 @@ interface SearchInputProps {
 
 export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState('');
-  const [results, setResults] = useState<{
-    display_name: string;
-    lat: number;
-    lon: number;
-  }[]>([]);
+  const [results, setResults] = useState<
+    {
+      display_name: string;
+      lat: number;
+      lon: number;
+    }[]
+  >([]);
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +58,11 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
           setErrorMessage('Location not found');
         }
       } catch (error: unknown) {
-        if (typeof error === 'object' && error !== null && 'response' in error) {
+        if (
+          typeof error === 'object' &&
+          error !== null &&
+          'response' in error
+        ) {
           setErrorMessage('Location not found');
           setResults([]);
         } else {
@@ -84,7 +97,7 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
   const handleClick = (value: string, lat: number, lon: number) => {
     setSearchValue(value);
     handleClose();
-    router.push(`/weather?lat=${lat}&lon=${lon}`);
+    router.push(`/weather/?lat=${lat}&lon=${lon}`);
   };
 
   const handleClose = () => {
@@ -93,12 +106,15 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
   };
 
   return (
-    <div className="space-y-2 flex flex-col px-2 py-4 overscroll-y-auto">
+    <div className="flex flex-col space-y-2 overscroll-y-auto px-2 py-4">
       <Input
         isClearable
         placeholder="Enter your location"
-        classNames={{ label: 'text-black/25 font-semibold', input: 'text-black/50 font-semibold' }}
-        className="rounded-lg font-semibold placeholder:font-semibold font-sans text-sm lg:text-xl focus:outline-gray-300 focus:border-white/25"
+        classNames={{
+          label: 'text-black/25 font-semibold',
+          input: 'text-black/50 font-semibold',
+        }}
+        className="rounded-lg font-sans text-sm font-semibold placeholder:font-semibold focus:border-white/25 focus:outline-gray-300 lg:text-xl"
         value={searchValue}
         onChange={handleChangeInput}
         onClear={() => {
@@ -111,24 +127,26 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
 
       <ul
         style={{ display: ulClose ? 'none' : '' }}
-        className={`${styles.customScrollbar} z-100 lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-full`}
+        className={`${styles.customScrollbar} z-100 max-h-full overflow-y-auto overscroll-y-auto rounded-lg lg:mt-2`}
       >
         {isLoading ? (
           <div className="flex flex-col space-y-1">
             {[...Array(10)].map((_, index) => (
               <Skeleton key={index} className={'rounded-lg'}>
-                <li className="border-y  p-2 py-3 h-12 rounded-lg text-xs font-semibold hover:bg-sky-900/75"></li>
+                <li className="h-12 rounded-lg border-y p-2 py-3 text-xs font-semibold hover:bg-sky-900/75"></li>
               </Skeleton>
             ))}
           </div>
         ) : errorMessage ? (
-          <p className="text-center p-4 text-red-500">{errorMessage}</p>
+          <p className="p-4 text-center text-red-500">{errorMessage}</p>
         ) : (
           results.map((result, index: Key) => (
             <li
               key={index}
-              className="border-y rounded-lg p-2 py-3 text-xs font-semibold hover:bg-sky-900/75"
-              onClick={() => handleClick(result.display_name, result.lat, result.lon)}
+              className="rounded-lg border-y p-2 py-3 text-xs font-semibold hover:bg-sky-900/75"
+              onClick={() =>
+                handleClick(result.display_name, result.lat, result.lon)
+              }
             >
               {result.display_name}
             </li>

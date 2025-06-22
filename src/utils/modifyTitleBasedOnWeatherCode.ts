@@ -1,0 +1,170 @@
+export const ModifyTitle: { [key: number]: object } = {
+  0: {
+    backgroundImage: 'linear-gradient(to bottom, white, #0eb1cd)',
+    WebkitBackgroundClip: 'text', // Background clip property to clip to text
+    backgroundClip: 'text', // Cross-browser support for the same
+    color: 'transparent', // Makes the text itself transparent so the gradient shows
+  },
+  1: {
+    backgroundImage: 'linear-gradient(to bottom, white, #0eb1cd)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  2: {
+    backgroundImage: 'linear-gradient(to bottom, #f5c2c2, #9fc5e8)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  3: {
+    backgroundImage: 'linear-gradient(to bottom, #d9ead3, #9fc5e8)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  45: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #efb1ad)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  48: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #efb1ad)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  51: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #93c47d)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  53: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #93c47d)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  55: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #93c47d)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  56: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #e39a94)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  57: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #e39a94)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  61: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #1dada2)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  63: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #1dada2)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  65: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #1dada2)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  66: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #1dada2)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  67: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #1dada2)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  71: {
+    backgroundImage: 'linear-gradient(to bottom, #dadbdd, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  73: {
+    backgroundImage: 'linear-gradient(to bottom, #dadbdd, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  75: {
+    backgroundImage: 'linear-gradient(to bottom, #dadbdd, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  77: {
+    backgroundImage: 'linear-gradient(to bottom, #dadbdd, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  80: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #eeeeee)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  81: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #eeeeee)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  82: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #eeeeee)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  85: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #827979)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  86: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #827979)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  95: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  96: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+  99: {
+    backgroundImage: 'linear-gradient(to bottom, #fff, #fff)',
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+  },
+};

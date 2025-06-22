@@ -3,13 +3,12 @@ const nextConfig = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      use: ['@svgr/webpack'],
     });
     return config;
   },
 
   eslint: {
-
     ignoreDuringBuilds: true,
   },
   typescript: {
@@ -18,7 +17,7 @@ const nextConfig = {
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: true,
-  }
+  },
 };
 
 export default nextConfig;

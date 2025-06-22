@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Modal,
   ModalContent,
@@ -10,35 +10,34 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-} from "@heroui/react";
+} from '@heroui/react';
 
 export default function GeoLocation() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalPlacement] = useState<
-    "center" | "auto" | "top" | "top-center" | "bottom" | "bottom-center"
-  >("center");
-  const [error, setError] = useState<string | null>("");
+    'center' | 'auto' | 'top' | 'top-center' | 'bottom' | 'bottom-center'
+  >('center');
+  const [error, setError] = useState<string | null>('');
   const router = useRouter();
-console.log(navigator.geolocation)
+  console.log(navigator.geolocation);
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           router.push(
-            `/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`
+            `/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`,
           );
-
         },
         (err) => {
           setError(
-            `Geolocation error: ${err.message}. Please retry or enter location manually`
+            `Geolocation error: ${err.message}. Please retry or enter location manually`,
           );
           onOpen();
-        }
+        },
       );
     } else {
       setError(
-        "Geolocation is not supported by this browser. Please enter a location manually."
+        'Geolocation is not supported by this browser. Please enter a location manually.',
       );
       onOpen();
     }
@@ -51,7 +50,7 @@ console.log(navigator.geolocation)
           placement={modalPlacement}
           isOpen={isOpen}
           onOpenChange={onOpenChange}
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
         >
           <ModalContent>
             {(onClose) => (
