@@ -6,7 +6,7 @@ import WindSvg from '/public/assets/icons/windSVG.svg';
 import { SetStateAction, useEffect, useState } from 'react';
 import SearchInput from './searchInput';
 import { WeatherDescriptions } from '@/components/codeDescription';
-import { Button, Card } from '@heroui/react';
+import { Button, Card, Modal, ModalContent, useDisclosure } from '@heroui/react';
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
 import clearSkyIcon from 'public/assets/icons/0-01.png';
 import partlyCloudyIcon from 'public/assets/icons/02-03.png';
@@ -52,7 +52,6 @@ const iconMap: { [key: number]: StaticImageData } = {
   99: thunderIcon,
 };
 
-
 interface WeatherDataProps {
   weatherData: {
     utcOffsetSeconds: number;
@@ -85,8 +84,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
   const [days, setDays] = useState(5);
   const [ulClose, setUlClose] = useState(true);
   const [iconData, setIconData] = useState<string[]>([]); // State for icon data
-
-
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   useEffect(() => {
     const fetchIcons = () => {
@@ -123,18 +121,23 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
 
   return (
     <>
-      <Card
-        className="flex flex-col md:w-5/12 lg:w-3/12 items-center h-screen md:h-full"
-        isBlurred
-      >
+      <Card className="flex flex-col md:w-5/12 lg:w-3/12 items-center h-screen md:h-full" isBlurred>
         <div className="flex flex-col w-full items-center my-4 lg:my-8 z-50">
           <div className="flex flex-row w-10/12 border border-white/25 rounded-lg z-0">
             <GpsIcon width={25} className="fill-white/25 ml-2" />
-            <SearchInput
-
-              ulClose={ulClose}
-              setUlClose={setUlClose}
-            />
+            <Button
+              onPress={onOpen}
+              className={
+                'text-white/50 w-full font-semibold bg-transparent hover:bg-black/25 border-none text-lg '
+              }
+            >
+              Enter your location
+            </Button>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+              <ModalContent className={`h-[80vh] bg-white/75`}>
+                <SearchInput ulClose={ulClose} setUlClose={setUlClose} onClose={onClose} />
+              </ModalContent>
+            </Modal>
           </div>
           <h1 className="my-4 lg:my-8 text-5xl">
             {Math.floor(weatherData.current.temperature2m * 10) / 10}°C
@@ -153,25 +156,19 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
           <h2>The Next Days Forecast</h2>
           <div className="flex lg:flex-row justify-between mb-4 md:mb-0 lg:mb-4 mt-6 md:mt-0 lg:mt-4">
             <Button
-              className={`${
-                days === 5 ? 'bg-black/25' : 'bg-transparent'
-              } text-white`}
+              className={`${days === 5 ? 'bg-black/25' : 'bg-transparent'} text-white`}
               onPress={() => handleButtonsPress(5)}
             >
               5 days
             </Button>
             <Button
-              className={`${
-                days === 10 ? 'bg-black/25' : 'bg-transparent'
-              } text-white`}
+              className={`${days === 10 ? 'bg-black/25' : 'bg-transparent'} text-white`}
               onPress={() => handleButtonsPress(10)}
             >
               10 days
             </Button>
             <Button
-              className={`${
-                days === 15 ? 'bg-black/25' : 'bg-transparent'
-              } text-white`}
+              className={`${days === 15 ? 'bg-black/25' : 'bg-transparent'} text-white`}
               onPress={() => handleButtonsPress(15)}
             >
               15 days
@@ -184,12 +181,8 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
               const maxTemp = weatherData.daily.temperature2mMax[index]; // Max temperatures
 
               return (
-                <div
-                  key={index}
-                  className="flex flex-row mt-2 lg:w-60 items-center lg:my-4"
-                >
-                  <div
-                    className="flex items-center sm:mx-2 md:mx-0 lg:mx-2 bg-white/5 w-10 h-10 justify-center rounded-lg">
+                <div key={index} className="flex flex-row mt-2 lg:w-60 items-center lg:my-4">
+                  <div className="flex items-center sm:mx-2 md:mx-0 lg:mx-2 bg-white/5 w-10 h-10 justify-center rounded-lg">
                     <Image
                       src={iconData[index]} // Use the icon from the state
                       width={20}
@@ -200,9 +193,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
                     />
                   </div>
                   <div className="flex flex-col w-28">
-                    <p className="text-xs text-white/50 pl-2">
-                      {WeatherDescriptions[code]}
-                    </p>
+                    <p className="text-xs text-white/50 pl-2">{WeatherDescriptions[code]}</p>
                   </div>
                   <div className="flex flex-col sm:ml-6 md:ml-2 lg:ml-4 border-l border-l-white/25 px-2 w-16">
                     <p className="text-xs">{Math.floor(minTemp * 10) / 10}°C</p>

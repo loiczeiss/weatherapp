@@ -1,8 +1,8 @@
-import Intro from "@/components/introPage";
-
+import Intro from '@/components/introPage';
 
 export default function Home() {
-  return (<>
+  return (
+    <>
       <Intro />
     </>
   );

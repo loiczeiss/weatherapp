@@ -4,7 +4,8 @@
 
 /* globals.css */
 
-html, body {
+html,
+body {
   height: 100%; /* Ensure html and body occupy full height */
   margin: 0;
   padding: 0;
@@ -19,7 +20,6 @@ body {
   height: 100%; /* Ensure Next.js root element is full height */
 }
 
-
 /* Add this to your global CSS file (e.g., styles/globals.css) */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
@@ -29,4 +29,3 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-

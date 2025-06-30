@@ -2,14 +2,12 @@ import { Skeleton, Card } from '@heroui/react';
 
 export default function WeatherLoading() {
   return (
-    <div
-      className="relative w-screen min-h-screen md:h-screen flex justify-center items-center overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="relative w-screen min-h-screen md:h-screen flex justify-center items-center overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Blurred background placeholder */}
       <div className="absolute -inset-4 bg-gradient-to-br from-blue-100/30 to-slate-100/40 blur-lg opacity-60" />
 
       {/* Main content window */}
-      <div
-        className="relative z-10 w-11/12 md:h-4/5 bg-white/40 backdrop-blur-md rounded-xl shadow-lg text-slate-700 flex md:flex-row outline outline-4 outline-white/60 flex-col my-4 md:my-0">
+      <div className="relative z-10 w-11/12 md:h-4/5 bg-white/40 backdrop-blur-md rounded-xl shadow-lg text-slate-700 flex md:flex-row outline outline-4 outline-white/60 flex-col my-4 md:my-0">
         {/* Display Section Skeleton */}
         <article className="flex flex-col md:w-8/12 lg:w-9/12 h-full p-4 justify-between md:order-first">
           {/* Date and time header skeleton */}
