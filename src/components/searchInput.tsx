@@ -1,18 +1,19 @@
-'use client';
+"use client";
 
-import { FetchLocationApi } from '@/actions/fetchLocationApi';
-import { ChangeEvent, useState, useEffect, Key, SetStateAction, Dispatch } from 'react';
-import styles from './styles.module.css';
-import { useRouter } from 'next/navigation';
-import { Input, Skeleton } from '@heroui/react';
+import { FetchLocationApi } from "@/actions/fetchLocationApi";
+import { ChangeEvent, useState, useEffect, Key, SetStateAction, Dispatch } from "react";
+import styles from "./styles.module.css";
+import { useRouter } from "next/navigation";
+import { Input, Skeleton } from "@heroui/react";
 
 interface SearchInputProps {
   ulClose: boolean;
   setUlClose: Dispatch<SetStateAction<boolean>>;
+  onClose?: () => void;
 }
 
-export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
-  const [searchValue, setSearchValue] = useState('');
+export default function SearchInput({ setUlClose, ulClose, onClose }: SearchInputProps) {
+  const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<
     {
       display_name: string;
@@ -28,8 +29,8 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
     const fetchData = async () => {
       const token = process.env.NEXT_PUBLIC_ACCESS_TOKEN;
       const options = {
-        method: 'GET',
-        headers: { accept: 'application/json' },
+        method: "GET",
+        headers: { accept: "application/json" }
       };
       const url = `https://eu1.locationiq.com/v1/search?key=${token}&q=${searchValue}&format=json`;
 
@@ -48,14 +49,14 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
           setErrorMessage(null);
         } else {
           setResults([]);
-          setErrorMessage('Location not found');
+          setErrorMessage("Location not found");
         }
       } catch (error: unknown) {
-        if (typeof error === 'object' && error !== null && 'response' in error) {
-          setErrorMessage('Location not found');
+        if (typeof error === "object" && error !== null && "response" in error) {
+          setErrorMessage("Location not found");
           setResults([]);
         } else {
-          setErrorMessage('An error occurred while fetching data');
+          setErrorMessage("An error occurred while fetching data");
         }
       } finally {
         setIsLoading(false);
@@ -86,12 +87,13 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
   const handleClick = (value: string, lat: number, lon: number) => {
     setSearchValue(value);
     handleClose();
+    onClose && onClose();
     router.push(`/weather?lat=${lat}&lon=${lon}`);
   };
 
   const handleClose = () => {
     setUlClose(true);
-    setSearchValue('');
+    setSearchValue("");
   };
 
   return (
@@ -99,12 +101,12 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
       <Input
         isClearable
         placeholder="Enter your location"
-        classNames={{ label: 'text-black/25 font-semibold', input: 'text-black/50 font-semibold' }}
+        classNames={{ label: "text-black/25 font-semibold", input: "text-black/50 font-semibold" }}
         className="rounded-lg font-semibold placeholder:font-semibold font-sans text-sm lg:text-xl focus:outline-gray-300 focus:border-white/25"
         value={searchValue}
         onChange={handleChangeInput}
         onClear={() => {
-          setSearchValue('');
+          setSearchValue("");
           setResults([]);
           setUlClose(true);
           setErrorMessage(null);
@@ -112,13 +114,13 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
       />
 
       <ul
-        style={{ display: ulClose ? 'none' : '' }}
+        style={{ display: ulClose ? "none" : "" }}
         className={`${styles.customScrollbar} z-100 lg:mt-2 rounded-lg overflow-y-auto overscroll-y-auto max-h-full`}
       >
         {isLoading ? (
           <div className="flex flex-col space-y-1">
             {[...Array(10)].map((_, index) => (
-              <Skeleton key={index} className={'rounded-lg'}>
+              <Skeleton key={index} className={"rounded-lg"}>
                 <li className="border-y  p-2 py-3 h-12 rounded-lg text-xs font-semibold hover:bg-sky-900/75"></li>
               </Skeleton>
             ))}

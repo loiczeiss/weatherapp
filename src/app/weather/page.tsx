@@ -4,7 +4,7 @@ import { bgSelection } from '@/components/backGround';
 import { fetchWeather } from '@/actions/weatherAPI';
 import Display from '@/components/display';
 import SidePanel from '@/components/sidePanel';
-
+import Image from 'next/image';
 interface SearchParams {
   lat: string;
   lon: string;
@@ -26,9 +26,9 @@ export default async function WeatherPage({ searchParams }: { searchParams: Sear
     <div className="relative w-screen md:h-screen flex justify-center items-center overflow-hidden ">
       {/* Blurred background */}
       <div
-        style={{ backgroundImage: `url(${bg})` }}
+
         className="absolute -inset-4 bg-cover bg-center blur-lg"
-      ></div>
+      ><Image src={bg} alt={bg} fill priority/></div>
 
       {/* Clear div (window) */}
       <div

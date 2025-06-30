@@ -84,7 +84,7 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
   const [days, setDays] = useState(5);
   const [ulClose, setUlClose] = useState(true);
   const [iconData, setIconData] = useState<string[]>([]); // State for icon data
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   useEffect(() => {
     const fetchIcons = () => {
@@ -126,15 +126,16 @@ export default function SidePanel({ weatherData }: WeatherDataProps) {
           <div className="flex flex-row w-10/12 border border-white/25 rounded-lg z-0">
             <GpsIcon width={25} className="fill-white/25 ml-2" />
             <Button
-              variant={'ghost'}
               onPress={onOpen}
-              className={'text-white/50 border-white/50 font-semibold text-lg '}
+              className={
+                'text-white/50 w-full font-semibold bg-transparent hover:bg-black/25 border-none text-lg '
+              }
             >
               Enter your location
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
               <ModalContent className={`h-[80vh] bg-white/75`}>
-                <SearchInput ulClose={ulClose} setUlClose={setUlClose} />
+                <SearchInput ulClose={ulClose} setUlClose={setUlClose} onClose={onClose} />
               </ModalContent>
             </Modal>
           </div>
