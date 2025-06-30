@@ -1,19 +1,19 @@
-import clearSky from "public/assets/clearSky.jpg";
-import drizzle from "public/assets/drizzle.jpeg";
-import drizzle2 from "public/assets/drizzle1.jpeg";
-import fog from "public/assets/fog.webp";
-import heavyRain from "public/assets/heavyRain.jpeg";
-import heavySnow from "public/assets/heavySnow.jpg";
-import overcast from "public/assets/overcast3.jpg"
+import clearSky from 'public/assets/clearSky.jpg';
+import drizzle from 'public/assets/drizzle.jpeg';
+import drizzle2 from 'public/assets/drizzle1.jpeg';
+import fog from 'public/assets/fog.webp';
+import heavyRain from 'public/assets/heavyRain.jpeg';
+import heavySnow from 'public/assets/heavySnow.jpg';
+import overcast from 'public/assets/overcast3.jpg';
 
-import partlyCloudy from "public/assets/partlyCloudy.webp";
-import rain from "public/assets/rain.jpeg";
-import snow from "public/assets/snow3.avif";
-import thunder from "public/assets/thunder.webp";
+import partlyCloudy from 'public/assets/partlyCloudy.webp';
+import rain from 'public/assets/rain.jpeg';
+import snow from 'public/assets/snow3.avif';
+import thunder from 'public/assets/thunder.webp';
 
 export function bgSelection(code: number) {
   const weather_code: number = code;
-  let bgUrl: string = "";
+  let bgUrl: string = '';
 
   switch (weather_code) {
     case 0:

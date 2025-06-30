@@ -31,9 +31,7 @@ export const GetCurrentDateInGMT = async (weatherData: {
   let hours: number | string;
 
   if (currentDate.getUTCHours() + weatherData.utcOffsetSeconds / 3600 < 10) {
-    hours = `0${
-      currentDate.getUTCHours() + weatherData.utcOffsetSeconds / 3600
-    }`;
+    hours = `0${currentDate.getUTCHours() + weatherData.utcOffsetSeconds / 3600}`;
   } else {
     hours = currentDate.getUTCHours() + weatherData.utcOffsetSeconds / 3600;
   }
@@ -52,16 +50,16 @@ export const GetCurrentDateInGMT = async (weatherData: {
 };
 
 export const monthString: Record<number, string> = {
-  1: "January",
-  2: "February",
-  3: "March",
-  4: "April",
-  5: "May",
-  6: "June",
-  7: "July",
-  8: "August",
-  9: "September",
-  10: "October",
-  11: "November",
-  12: "December",
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
+  10: 'October',
+  11: 'November',
+  12: 'December',
 };

@@ -1,12 +1,12 @@
-'use server'
-import { StaticImageData } from "next/dist/shared/lib/get-img-props";
-import clearSkyIcon from "public/assets/icons/0-01.png";
-import partlyCloudyIcon from "public/assets/icons/02-03.png";
-import fogIcon from "public/assets/icons/45-48.png";
-import drizzleIcon from "public/assets/icons/51-53-56.png";
+'use server';
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
+import clearSkyIcon from 'public/assets/icons/0-01.png';
+import partlyCloudyIcon from 'public/assets/icons/02-03.png';
+import fogIcon from 'public/assets/icons/45-48.png';
+import drizzleIcon from 'public/assets/icons/51-53-56.png';
 import drizzleIcon2 from 'public/assets/icons/55-57.png';
 import rainIcon from 'public/assets/icons/61-63-66.png';
-import rainIcon2 from "public/assets/icons/65-67.png"
+import rainIcon2 from 'public/assets/icons/65-67.png';
 import snowIcon from 'public/assets/icons/71-73-85.png';
 import snowIcon2 from 'public/assets/icons/75-77-86.png';
 import showersIcon from 'public/assets/icons/80-81-82.png';

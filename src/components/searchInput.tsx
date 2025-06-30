@@ -13,11 +13,13 @@ interface SearchInputProps {
 
 export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState('');
-  const [results, setResults] = useState<{
-    display_name: string;
-    lat: number;
-    lon: number;
-  }[]>([]);
+  const [results, setResults] = useState<
+    {
+      display_name: string;
+      lat: number;
+      lon: number;
+    }[]
+  >([]);
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,7 +43,7 @@ export default function SearchInput({ setUlClose, ulClose }: SearchInputProps) {
               display_name: string;
               lat: number;
               lon: number;
-            }[],
+            }[]
           );
           setErrorMessage(null);
         } else {
